@@ -8,15 +8,15 @@
   <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-
     body {
       margin: 0;
       font-family: 'Roboto Mono', monospace;
       background: linear-gradient(145deg, #001f3f, #002855);
       color: #eaeaea;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       min-height: 100vh;
       text-align: center;
       background-attachment: fixed;
@@ -27,11 +27,11 @@
       background: rgba(0, 0, 0, 0.3);
       border-radius: 12px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      margin-left: auto;
-      margin-right: auto;
+      margin-top: 3rem;  /* Adds space above */
+      margin-bottom: 4rem; /* Adds space below */
       position: relative;
-      padding-top: 4rem; /* Added space above */
-      padding-bottom: 4rem; /* Added space below */
+      padding-top: 4rem;
+      padding-bottom: 4rem;
     }
     h1 {
       font-size: 2.2rem;
@@ -63,35 +63,21 @@
       font-size: 0.75rem;
       margin-top: 3rem;
       color: #a0a0a0;
-      text-align: center;  /* Centering the logo in the footer */
-    }
-    .back-button {
-      margin-top: 1rem;
-      padding: 0.6rem 1.4rem;
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-    .back-button:hover {
-      background: #ffffff;
-      color: #001f3f;
+      text-align: center;
+      width: 100%;
     }
     .footer-logo {
-      width: 200px;
+      width: 180px;
       height: auto;
-      margin-top: 2rem;  /* Adds spacing between footer content and logo */
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
+  <!-- Brand Mark at the Top -->
+  <img src="/assets/pauhu.ai_brand_mark_nega.png" alt="Pauhu AI brand mark" class="footer-logo" />
+
   <main>
-    <!-- Back Button on Top -->
-    <a href="/" class="back-button">Back to Home</a>
-    
     <h1>Pauhu AI</h1>
     <h2>Building the voice behind tomorrow’s decisions.</h2>
     <p>We develop AI solutions for language environments where precision and linguistic clarity must be maintained under demanding conditions.</p>
