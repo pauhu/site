@@ -8,6 +8,7 @@
   <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+
     body {
       margin: 0;
       font-family: 'Roboto Mono', monospace;
@@ -71,11 +72,34 @@
       height: auto;
       margin-top: 2rem;
     }
+    .brand-mark {
+      width: 120px; /* Make the brand mark smaller */
+      height: auto;
+      margin-bottom: 1rem;
+    }
+    .back-button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.4rem;
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    .back-button:hover {
+      background: #ffffff;
+      color: #001f3f;
+    }
   </style>
 </head>
 <body>
+  <!-- Back Button on Top -->
+  <a href="/" class="back-button">Back to Home</a>
+
   <!-- Brand Mark at the Top -->
-  <img src="/assets/pauhu.ai_brand_mark_nega.png" alt="Pauhu AI brand mark" class="footer-logo" />
+  <img src="/assets/pauhu.ai_brand_mark_nega.png" alt="Pauhu AI brand mark" class="brand-mark" />
 
   <main>
     <h1>Pauhu AI</h1>
