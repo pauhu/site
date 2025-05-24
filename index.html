@@ -27,11 +27,11 @@
       background: rgba(0, 0, 0, 0.3);
       border-radius: 12px;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-    }
-    img.logo {
-      width: 90px;
-      height: auto;
-      margin-bottom: 1.2rem;
+      margin-left: auto;
+      margin-right: auto;
+      position: relative;
+      padding-top: 4rem; /* Added space above */
+      padding-bottom: 4rem; /* Added space below */
     }
     h1 {
       font-size: 2.2rem;
@@ -44,13 +44,29 @@
       margin-top: 0;
       font-size: 1.1rem;
     }
-    p {
+    p, ul {
       margin-top: 1rem;
       line-height: 1.6;
+      text-align: left;
     }
-    a.button {
-      display: inline-block;
-      margin-top: 1.5rem;
+    ul {
+      padding-left: 1.5rem;
+    }
+    a {
+      color: #9cd5ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      font-size: 0.75rem;
+      margin-top: 3rem;
+      color: #a0a0a0;
+      text-align: center;  /* Centering the logo in the footer */
+    }
+    .back-button {
+      margin-top: 1rem;
       padding: 0.6rem 1.4rem;
       background: transparent;
       color: #ffffff;
@@ -60,40 +76,35 @@
       font-weight: bold;
       transition: all 0.3s ease;
     }
-    a.button:hover {
+    .back-button:hover {
       background: #ffffff;
       color: #001f3f;
     }
-    .badge {
-      background: rgba(255, 255, 255, 0.1);
-      color: #bbb;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      display: inline-block;
-      font-style: italic;
-    }
-    footer {
-      font-size: 0.75rem;
-      margin-top: 2rem;
-      color: #a0a0a0;
+    .footer-logo {
+      width: 200px;
+      height: auto;
+      margin-top: 2rem;  /* Adds spacing between footer content and logo */
     }
   </style>
 </head>
 <body>
   <main>
-    <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI logo" class="logo" />
+    <!-- Back Button on Top -->
+    <a href="/" class="back-button">Back to Home</a>
+    
     <h1>Pauhu AI</h1>
     <h2>Building the voice behind tomorrow’s decisions.</h2>
     <p>We develop AI solutions for language environments where precision and linguistic clarity must be maintained under demanding conditions.</p>
     <p>Our local AI infrastructure integrates quietly into systems where communication remains structured and coherent without external dependencies or exposed data.</p>
     <p class="badge">Privacy built in · GDPR ready · EU AI Act compliant</p>
     <p><a href="mailto:team@pauhu.ai" class="button">Contact us</a></p>
-    <footer>
-      Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND · Business ID: 3477255-1 · VAT ID: FI34772551 ·
-      <a href="/legal/privacy-policy.html" style="color: #a0a0a0; text-decoration: underline;">Privacy Policy</a>
-    </footer>
   </main>
+
+  <!-- Footer with Pauhu Logo -->
+  <footer>
+    <img src="/assets/pauhu.ai_logo_nega.png" alt="Pauhu AI Logo" class="footer-logo" />
+    Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND · Business ID: 3477255-1 · VAT ID: FI34772551 ·
+    <a href="/legal/privacy-policy.html" style="color: #a0a0a0; text-decoration: underline;">Privacy Policy</a>
+  </footer>
 </body>
 </html>
