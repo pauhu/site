@@ -1,104 +1,206 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pauhu AI – Trusted Language Infrastructure</title>
-  <meta name="description" content="A language layer designed to support structured communication in complex environments." />
-  <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI That Runs Where You Are</title>
+    <meta name="description" content="Enterprise AI that runs on your hardware. Simple
+  pricing. Total control and data sovereignty." />
+    <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png" />
+    <style>
+      @import
+  url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
 
-    body {
-      margin: 0;
-      font-family: 'Roboto Mono', monospace;
-      background: linear-gradient(145deg, #001f3f, #002855);
-      color: #eaeaea;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
-      background-attachment: fixed;
-    }
-    main {
-      max-width: 720px;
-      padding: 2rem;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      text-align: center;
-    }
-    img.logo {
-      width: 90px;
-      height: auto;
-      margin-bottom: 1.2rem;
-    }
-    h1 {
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-    h2 {
-      font-weight: 400;
-      color: #a0bcd4;
-      margin-top: 0;
-      font-size: 1.1rem;
-    }
-    p {
-      margin-top: 1rem;
-      line-height: 1.6;
-    }
-    a.button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1.4rem;
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      border-radius: 6px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-    }
-    a.button:hover {
-      background: #ffffff;
-      color: #001f3f;
-    }
-    .badge {
-      background: rgba(255, 255, 255, 0.1);
-      color: #bbb;
-      font-size: 0.8rem;
-      padding: 0.3rem 0.8rem;
-      border-radius: 4px;
-      margin-top: 1rem;
-      display: inline-block;
-      font-style: italic;
-    }
-    footer {
-      font-size: 0.75rem;
-      margin-top: 2rem;
-      color: #a0a0a0;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <!-- Brand Mark Logo -->
-    <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI brand mark logo" class="logo" />
+      body {
+        margin: 0;
+        font-family: 'Roboto Mono', monospace;
+        background: linear-gradient(145deg, #001f3f, #002855);
+        color: #eaeaea;
+        min-height: 100vh;
+        text-align: center;
+        background-attachment: fixed;
+        padding: 2rem 0;
+      }
+      main {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+      section {
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 12px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+        padding: 3rem 2rem;
+        margin-bottom: 2rem;
+      }
+      img.logo {
+        width: 90px;
+        height: auto;
+        margin-bottom: 1.2rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+      h2 {
+        font-weight: 400;
+        color: #a0bcd4;
+        margin-top: 0;
+        font-size: 1.1rem;
+      }
+      h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin: 2rem 0 1rem 0;
+        color: #ffffff;
+      }
+      p {
+        margin-top: 1rem;
+        line-height: 1.6;
+      }
+      ul {
+        text-align: left;
+        max-width: 500px;
+        margin: 1.5rem auto;
+        list-style: none;
+        padding: 0;
+      }
+      ul li {
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+      ul li:before {
+        content: "❤️";
+        position: absolute;
+        left: 0;
+      }
+      .cta-primary {
+        display: inline-block;
+        margin-top: 1.5rem;
+        padding: 0.8rem 2rem;
+        background: #ffffff;
+        color: #001f3f;
+        border: 1px solid #ffffff;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .cta-primary:hover {
+        background: transparent;
+        color: #ffffff;
+      }
+      .badge {
+        background: rgba(255, 255, 255, 0.1);
+        color: #bbb;
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+        border-radius: 4px;
+        margin-top: 1rem;
+        display: inline-block;
+        font-style: italic;
+      }
+      .love-note {
+        font-style: italic;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 1.5rem 0;
+        text-align: left;
+      }
+      form {
+        margin-top: 2rem;
+      }
+      input[type="text"],
+      input[type="email"] {
+        display: block;
+        width: 100%;
+        max-width: 400px;
+        margin: 0.5rem auto;
+        padding: 0.8rem;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 6px;
+        color: #ffffff;
+        font-family: 'Roboto Mono', monospace;
+      }
+      input[type="text"]::placeholder,
+      input[type="email"]::placeholder {
+        color: #a0a0a0;
+      }
+      input[type="submit"] {
+        margin-top: 1rem;
+        padding: 0.8rem 2rem;
+        background: #ffffff;
+        color: #001f3f;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Roboto Mono', monospace;
+      }
+      input[type="submit"]:hover {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      footer {
+        font-size: 0.75rem;
+        margin-top: 3rem;
+        color: #a0a0a0;
+        padding-bottom: 2rem;
+      }
+      footer a {
+        color: #a0a0a0;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <!-- Hero Section -->
+      <section>
+        <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI brand mark logo"        
+  class="logo" />
+        <h1>AI That Runs Where You Are</h1>
+        <h2>Simple pricing. Total control. Zero surprises.</h2>
+        <a href="#early-access" class="cta-primary">Join Early Access →</a>
+      </section>
 
-    <h1>Pauhu AI</h1>
-    <h2>Building the voice behind tomorrow’s decisions.</h2>
-    <p>We develop AI solutions for language environments where precision and linguistic clarity must be maintained under demanding conditions.</p>
-    <p>Our local AI infrastructure integrates quietly into systems where communication remains structured and coherent without external dependencies or exposed data.</p>
-    <p class="badge">GDPR and EU AI Act compliant</p>
-    <p><a href="mailto:team@pauhu.ai" class="button">Contact us</a></p>
-    
-    <!-- Footer with Pauhu AI info and privacy policy link -->
-    <footer>
-      Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND · Business ID: 3477255-1 · VAT ID: FI34772551 ·
-      <a href="/legal/privacy-policy.html" style="color: #a0a0a0; text-decoration: underline;">Privacy</a>
-    </footer>
-  </main>
-</body>
-</html>
+      <!-- What We're Building -->
+      <section>
+        <h3>What We're Building</h3>
+        <ul>
+          <li>AI that runs on YOUR laptop, server, or data center</li>
+          <li>One fixed fee for unlimited usage</li>
+          <li>Software that sparks joy, not frustration</li>
+        </ul>
+        <p style="margin-top: 2rem;">We believe enterprise AI should be as simple and reliable     
+   as your morning coffee.</p>
+      </section>
+
+      <!-- Why Pauhu -->
+      <section>
+        <h3>Why Pauhu?</h3>
+        <div class="love-note">
+          <p>We're building Pauhu because we believe in a world where AI empowers everyone,        
+  not just those who can afford unpredictable costs.</p>
+          <p>Where your data stays yours. Where software makes you smile. Where automation
+  means more time for what matters.</p>
+          <p>Let's build something beautiful together.</p>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p class="badge">Built with Finnish values 🇫🇮</p>
+        <p>Pauhu AI Ltd · Helsinki, Finland · team@pauhu.ai</p>
+        <p>
+          <a href="/legal/privacy-policy.html">Privacy</a> ·
+          <a href="/legal/terms.html">Terms</a>
+        </p>
+      </footer>
+    </main>
+  </body>
+  </html>
