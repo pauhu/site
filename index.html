@@ -1,203 +1,583 @@
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Pauhu AI - Enterprise AI. Fully Yours. The only on-premises AI platform with fixed pricing, full data control, and instant setup.">
     <title>Pauhu AI</title>
-    <meta name="description" content="Enterprise AI that runs on your hardware. Simple
-  pricing. Total control and data sovereignty." />
-    <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png" />
+    <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js + HTMX -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    
     <style>
-      @import
-  url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap');
-
-      body {
-        margin: 0;
-        font-family: 'Roboto Mono', monospace;
-        background: linear-gradient(145deg, #001f3f, #002855);
-        color: #eaeaea;
-        min-height: 100vh;
-        text-align: center;
-        background-attachment: fixed;
-        padding: 2rem 0;
-      }
-      main {
-        max-width: 720px;
-        margin: 0 auto;
-        padding: 0 2rem;
-      }
-      section {
-        background: rgba(0, 0, 0, 0.3);
-        border-radius: 12px;
-        box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-        padding: 3rem 2rem;
-        margin-bottom: 2rem;
-      }
-      img.logo {
-        width: 90px;
-        height: auto;
-        margin-bottom: 1.2rem;
-      }
-      h1 {
-        font-size: 2.2rem;
-        font-weight: 700;
-        margin-bottom: 0.3rem;
-      }
-      h2 {
-        font-weight: 400;
-        color: #a0bcd4;
-        margin-top: 0;
-        font-size: 1.1rem;
-      }
-      h3 {
-        font-size: 1.8rem;
-        font-weight: 700;
-        margin: 2rem 0 1rem 0;
-        color: #ffffff;
-      }
-      p {
-        margin-top: 1rem;
-        line-height: 1.6;
-      }
-      ul {
-        text-align: left;
-        max-width: 500px;
-        margin: 1.5rem auto;
-        list-style: none;
-        padding: 0;
-      }
-      ul li {
-        margin-bottom: 1rem;
-        padding-left: 1.5rem;
-        position: relative;
-      }
-      ul li:before {
-        content: "❤️";
-        position: absolute;
-        left: 0;
-      }
-      .cta-primary {
-        display: inline-block;
-        margin-top: 1.5rem;
-        padding: 0.8rem 2rem;
-        background: #ffffff;
-        color: #001f3f;
-        border: 1px solid #ffffff;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: all 0.3s ease;
-      }
-      .cta-primary:hover {
-        background: transparent;
-        color: #ffffff;
-      }
-      .badge {
-        background: rgba(255, 255, 255, 0.1);
-        color: #bbb;
-        font-size: 0.8rem;
-        padding: 0.3rem 0.8rem;
-        border-radius: 4px;
-        margin-top: 1rem;
-        display: inline-block;
-        font-style: italic;
-      }
-      .love-note {
-        font-style: italic;
-        background: rgba(255, 255, 255, 0.05);
-        padding: 1.5rem;
-        border-radius: 8px;
-        margin: 1.5rem 0;
-        text-align: left;
-      }
-      form {
-        margin-top: 2rem;
-      }
-      input[type="text"],
-      input[type="email"] {
-        display: block;
-        width: 100%;
-        max-width: 400px;
-        margin: 0.5rem auto;
-        padding: 0.8rem;
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        border-radius: 6px;
-        color: #ffffff;
-        font-family: 'Roboto Mono', monospace;
-      }
-      input[type="text"]::placeholder,
-      input[type="email"]::placeholder {
-        color: #a0a0a0;
-      }
-      input[type="submit"] {
-        margin-top: 1rem;
-        padding: 0.8rem 2rem;
-        background: #ffffff;
-        color: #001f3f;
-        border: none;
-        border-radius: 6px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: 'Roboto Mono', monospace;
-      }
-      input[type="submit"]:hover {
-        background: rgba(255, 255, 255, 0.9);
-      }
-      footer {
-        font-size: 0.75rem;
-        margin-top: 3rem;
-        color: #a0a0a0;
-        padding-bottom: 2rem;
-      }
-      footer a {
-        color: #a0a0a0;
-        text-decoration: underline;
-      }
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #002855 0%, #001a3d 100%);
+            color: white;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: min(90vw, 600px);
+            margin: 0 auto;
+            padding: clamp(20px, 5vw, 40px);
+            text-align: center;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .logo img {
+            width: clamp(120px, 20vw, 150px);
+            height: auto;
+            margin-bottom: clamp(20px, 5vw, 40px);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        
+        .title {
+            font-size: clamp(28px, 6vw, 36px);
+            font-weight: 600;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #e6f3ff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px rgba(255,255,255,0.3)); }
+            to { filter: drop-shadow(0 0 15px rgba(255,255,255,0.6)); }
+        }
+        
+        .description {
+            font-size: clamp(16px, 3.5vw, 18px);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #fff, #f0f9ff);
+            color: #002855;
+            padding: clamp(8px 16px, 2vw, 12px 24px);
+            border: none;
+            border-radius: 8px;
+            font-size: clamp(14px, 3vw, 16px);
+            font-weight: 600;
+            cursor: pointer;
+            margin: 10px 5px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,255,255,0.3);
+        }
+        
+        .cta-button:active {
+            transform: translateY(0);
+        }
+        
+        .section {
+            margin: clamp(30px, 8vw, 50px) 0;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSection 0.6s ease-out forwards;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        @keyframes fadeInSection {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .section-title {
+            font-size: clamp(22px, 5vw, 28px);
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #e6f3ff;
+        }
+        
+        .section-description {
+            font-size: clamp(14px, 3vw, 16px);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .contact-form {
+            max-width: min(90vw, 400px);
+            margin: 30px auto;
+            text-align: left;
+            background: rgba(255,255,255,0.05);
+            padding: clamp(20px, 5vw, 30px);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #e6f3ff;
+            transition: color 0.3s ease;
+        }
+        
+        .form-group input, 
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4fc3f7;
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(79,195,247,0.3);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(45deg, #4fc3f7, #29b6f6);
+            color: white;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79,195,247,0.4);
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .submit-button.loading {
+            background: linear-gradient(45deg, #666, #888);
+        }
+        
+        .form-status {
+            margin-top: 15px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            text-align: center;
+            font-weight: 500;
+            animation: slideIn 0.3s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-status.success {
+            background: linear-gradient(45deg, #4caf50, #66bb6a);
+            color: white;
+            box-shadow: 0 4px 15px rgba(76,175,80,0.3);
+        }
+        
+        .form-status.error {
+            background: linear-gradient(45deg, #f44336, #ef5350);
+            color: white;
+            box-shadow: 0 4px 15px rgba(244,67,54,0.3);
+        }
+        
+        .honeypot {
+            display: none !important;
+        }
+        
+        .privacy-note {
+            font-size: clamp(11px, 2.5vw, 12px);
+            color: rgba(255,255,255,0.7);
+            margin-top: 15px;
+            text-align: center;
+            font-style: italic;
+        }
+        
+        .footer {
+            font-size: clamp(12px, 2.5vw, 14px);
+            margin-top: clamp(30px, 8vw, 50px);
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 640px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .contact-form {
+                padding: 20px 15px;
+                margin: 20px auto;
+            }
+            
+            .cta-button {
+                display: block;
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        
+        /* Reduced motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Dark mode support */
+        @media (prefers-color-scheme: light) {
+            .title {
+                background: linear-gradient(45deg, #fff, #002855);
+                background-clip: text;
+                -webkit-background-clip: text;
+            }
+        }
     </style>
-  </head>
-  <body>
-    <main>
-      <!-- Hero Section -->
-      <section>
-        <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI brand mark logo"        
-  class="logo" />
-        <h1>AI without Data Leaks</h1>
-        <h2>Fixed pricing. Total data control. Zero surprises.</h2>
-        <a href=mailto:team@pauhu.ai" class="cta-primary">Contact us →</a>
-      </section>
+</head>
+<body x-data="pauhuApp()" x-init="init()">
+    <!-- Floating background elements -->
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
 
-      <!-- What We're Building -->
-      <section>
-        <h3>What We're Building</h3>
-        <ul>
-          <li>AI that runs off-grid or on-premise</li>
-          <li>One fixed fee for unlimited usage</li>
-          <li>Dev tools that spark joy, not frustration</li>
-        </ul>
-        <p style="margin-top: 2rem;">We believe enterprise AI should be as simple and reliable     
-   as your morning coffee.</p>
-      </section>
-
-      <!-- Why Pauhu -->
-      <section>
-        <h3>Why Pauhu?</h3>
-        <div class="love-note">
-          <p>We're building Pauhu because we believe in a world where AI empowers everyone,        
-  not just those who can afford unpredictable costs.</p>
-          <p>Where your data stays yours. Where software makes you smile. Where automation
-  means more time for what matters.</p>
-          <p>Let's build something beautiful together.</p>
+    <div class="container">
+        <div class="logo">
+            <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" 
+                 alt="Pauhu AI brand mark logo" 
+                 loading="lazy"
+                 x-intersect="animateElement">
         </div>
-      </section>
+        
+        <h1 class="title" x-intersect="animateElement">Enterprise AI. Fully Yours.</h1>
+        <p class="description" x-intersect="animateElement">
+            The only on-premises AI platform with fixed pricing, full data control, and instant setup. 
+            Talk to Pauhu AI and build AI automations your way — no consultants, no leaks, no limits.
+        </p>
+        
+        <a href="#contact-form" 
+           class="cta-button" 
+           x-intersect="animateElement"
+           @click="scrollToForm()">
+            ASK MORE →
+        </a>
+        
+        <div class="section" style="--delay: 0.2s" x-intersect="animateElement">
+            <h2 class="section-title">No Data Leaks</h2>
+            <p class="section-description">
+                The only AI platform that runs 100% on-premises – or off-grid, offline or online. You decide.
+            </p>
+        </div>
+        
+        <div class="section" style="--delay: 0.4s" x-intersect="animateElement">
+            <h2 class="section-title">Fixed Pricing</h2>
+            <p class="section-description">One flat user fee. Unlimited usage per user.</p>
+        </div>
+        
+        <div class="section" style="--delay: 0.6s" x-intersect="animateElement">
+            <h2 class="section-title">AI as Easy as Your Morning Coffee</h2>
+            <p class="section-description">
+                Install in minutes. Start a conversation with your Pauhu AI team. 
+                Build and run AI automations intuitively – no coding needed.
+            </p>
+            <a href="#contact-form" 
+               class="cta-button" 
+               @click="scrollToForm()">
+                TRY IT NOW →
+            </a>
+        </div>
+        
+        <div class="section" style="--delay: 0.8s" x-intersect="animateElement">
+            <h2 class="section-title">Why Pauhu AI?</h2>
+            <p class="section-description">
+                Pauhu AI is based on a deep understanding of linguistics and language technologies, 
+                and built on cutting-edge data and AI models.
+            </p>
+            <p class="section-description">
+                We believe in AI that empowers — keeping your data yours, software intuitive, 
+                and productivity essential.
+            </p>
+            <p class="section-description">
+                With fixed pricing, you gain full control, predictability, and sovereignty 
+                over your AI infrastructure.
+            </p>
+        </div>
+        
+        <form id="contact-form" 
+              class="contact-form" 
+              x-intersect="animateElement"
+              hx-post="https://pauhu-contact.pauhu.workers.dev"
+              hx-target="#form-response"
+              hx-swap="innerHTML"
+              hx-indicator="#loading"
+              @htmx:before-request="handleSubmit()"
+              @htmx:after-request="handleResponse($event)">
+            
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" 
+                       id="name" 
+                       name="name" 
+                       placeholder="Your Name" 
+                       required
+                       x-model="form.name"
+                       @input="validateField('name')">
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" 
+                       id="email" 
+                       name="email" 
+                       placeholder="your@company.com" 
+                       required
+                       x-model="form.email"
+                       @input="validateField('email')">
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" 
+                          name="message" 
+                          rows="4" 
+                          placeholder="Tell us about your AI needs - we're here to help!" 
+                          required
+                          x-model="form.message"
+                          @input="validateField('message')"></textarea>
+            </div>
+            
+            <!-- Honeypot for spam prevention -->
+            <input type="text" name="honeypot" class="honeypot" x-model="form.honeypot">
+            
+            <button type="submit" 
+                    class="submit-button" 
+                    :class="{ 'loading': isLoading }"
+                    :disabled="isLoading || !isFormValid">
+                <span x-show="!isLoading">ASK US ANYTHING →</span>
+                <span x-show="isLoading" id="loading">Sending...</span>
+            </button>
+            
+            <div id="form-response" 
+                 class="form-status" 
+                 x-show="showStatus" 
+                 :class="statusClass"
+                 x-text="statusMessage"
+                 x-transition:enter="transition ease-out duration-300"
+                 x-transition:enter-start="opacity-0 transform -translate-y-4"
+                 x-transition:enter-end="opacity-100 transform translate-y-0"></div>
+        </form>
+        
+        <p class="privacy-note" x-intersect="animateElement">
+            Built-in data sovereignty · Compliant with GDPR and the EU AI Act
+        </p>
+        
+        <div class="footer" x-intersect="animateElement">
+            Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
+            Business ID: 3477255-1 · VAT ID: FI34772551 · Privacy Policy
+        </div>
+    </div>
 
-      <!-- Footer -->
-      <footer>
-        <p class="badge">Data sovereignty built in · GDPR and EU AI Act compliant</p>
-        <p>Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND · Business ID: 3477255-1 · VAT ID: FI34772551 ·
-    <a href="/legal/privacy-policy.html" style="color: #a0a0a0; text-decoration: underline;">Privacy Policy</a></p>
-  </footer>
-    </main>
-  </body>
-  </html>
+    <script>
+        function pauhuApp() {
+            return {
+                form: {
+                    name: '',
+                    email: '',
+                    message: '',
+                    honeypot: ''
+                },
+                isLoading: false,
+                showStatus: false,
+                statusMessage: '',
+                statusClass: '',
+                
+                init() {
+                    // Set animation delays for sections
+                    document.querySelectorAll('.section').forEach((section, index) => {
+                        section.style.setProperty('--delay', `${0.2 + (index * 0.2)}s`);
+                    });
+                },
+                
+                get isFormValid() {
+                    return this.form.name && 
+                           this.form.email.match(/^[\w\.-]+@[\w\.-]+\.\w+$/) && 
+                           this.form.message;
+                },
+                
+                validateField(field) {
+                    // Real-time validation feedback could go here
+                    console.log(`Validating ${field}:`, this.form[field]);
+                },
+                
+                scrollToForm() {
+                    document.getElementById('contact-form').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                },
+                
+                handleSubmit() {
+                    // Check honeypot
+                    if (this.form.honeypot) {
+                        return false; // Silent fail for bots
+                    }
+                    
+                    this.isLoading = true;
+                    this.showStatus = false;
+                },
+                
+                handleResponse(event) {
+                    this.isLoading = false;
+                    
+                    if (event.detail.xhr.status === 200) {
+                        this.statusClass = 'success';
+                        this.statusMessage = "Thank you! We'll be in touch within 24 hours.";
+                        this.showStatus = true;
+                        
+                        // Reset form
+                        setTimeout(() => {
+                            this.form = { name: '', email: '', message: '', honeypot: '' };
+                        }, 2000);
+                    } else {
+                        this.statusClass = 'error';
+                        this.statusMessage = 'Something went wrong. Please try again or email us directly.';
+                        this.showStatus = true;
+                    }
+                },
+                
+                animateElement(element) {
+                    // Intersection observer callback for animations
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
