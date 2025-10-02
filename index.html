@@ -4,156 +4,329 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Pauhu AI - Enterprise AI. Fully Yours. The only on-premise AI platform with fixed pricing, full data control, and instant setup.">
-    <title>Pauhu AI</title>
+    <title>Pauhu AI - Contact Us</title>
     <link rel="icon" href="/assets/pauhu.ai_brand_mark_nega.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #002855;
+            background: linear-gradient(135deg, #002855 0%, #003366 100%);
             color: white;
-            margin: 0;
-            padding: 20px 0 60px 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            min-height: 100vh;
+            padding: 20px 0 60px 0;
         }
+
         .container {
             max-width: 600px;
             padding: 0 20px;
             text-align: center;
+            width: 100%;
         }
+
         .privacy-note-top {
             font-size: 12px;
-            color: #ccc;
+            color: rgba(255,255,255,0.7);
             margin-bottom: 20px;
+            animation: fadeInDown 0.6s ease-out;
         }
+
         .logo img {
             width: 48%;
             max-width: 300px;
             height: auto;
-            margin-top: 40px;
-            margin-bottom: 40px;
+            margin: 40px 0;
+            animation: fadeInUp 0.8s ease-out;
+            transition: transform 0.3s ease;
         }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
         .title {
-            font-size: 32px;
+            font-size: clamp(28px, 5vw, 36px);
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .description {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 40px;
+            animation: fadeInUp 1.2s ease-out;
+            color: rgba(255,255,255,0.9);
         }
+
         .section {
             margin-bottom: 40px;
-            text-align: center;
+            animation: fadeInUp 1.4s ease-out;
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
         }
+
+        .section:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+
         .section-title {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.2;
+            margin-bottom: 15px;
+            color: #ffffff;
         }
+
         .section-description {
             font-size: 16px;
             line-height: 1.6;
-            margin-bottom: 0;
-            text-align: center;
+            color: rgba(255,255,255,0.85);
         }
+
         .contact-section {
             margin: 40px 0;
+            animation: fadeInUp 1.6s ease-out;
         }
+
+        .form-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .form-container:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-2px);
+        }
+
+        .email-note {
+            background: rgba(96,165,250,0.2);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 15px;
+            line-height: 1.6;
+            border-left: 4px solid #60a5fa;
+        }
+
+        .email-note strong {
+            color: #93c5fd;
+        }
+
         .contact-form {
             max-width: 400px;
-            margin: 0 auto 20px;
+            margin: 0 auto;
             text-align: left;
         }
+
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            position: relative;
         }
+
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 600;
+            color: rgba(255,255,255,0.9);
+            transition: color 0.3s ease;
         }
-        .form-group input, .form-group textarea {
+
+        .form-group input,
+        .form-group textarea {
             width: 100%;
-            padding: 12px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 0;
-            background-color: white;
+            padding: 15px;
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            background: rgba(255,255,255,0.95);
             color: #002855;
             font-family: 'Inter', sans-serif;
-        }
-        .submit-button {
-            background-color: white;
-            color: #002855;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 0;
             font-size: 16px;
-            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: rgba(255,255,255,1);
+            box-shadow: 0 0 20px rgba(96,165,250,0.3);
+            transform: translateY(-1px);
+        }
+
+        .submit-button {
+            background: linear-gradient(45deg, #60a5fa, #3b82f6);
+            color: white;
+            padding: 20px 35px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
             cursor: pointer;
             width: 100%;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .submit-button:hover:not(:disabled) {
-            background-color: #f0f0f0;
+
+        .submit-button:hover {
+            background: linear-gradient(45deg, #3b82f6, #2563eb);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(59,130,246,0.4);
         }
-        .honeypot {
-            display: none !important;
+
+        .submit-button:active {
+            transform: translateY(-1px);
         }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .email-preview {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            text-align: left;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .email-preview strong {
+            color: #93c5fd;
+        }
+
         .privacy-note {
             font-size: 12px;
-            color: #ccc;
-            margin-top: 10px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 15px;
             line-height: 1.4;
         }
+
         .footer {
             font-size: 12px;
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-            color: #ccc;
-            line-height: 1.4;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+            animation: fadeInUp 1.8s ease-out;
         }
-        .form-note {
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: #60a5fa;
+        }
+
+        .alternative-contact {
+            margin-top: 25px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-link {
+            display: inline-block;
             background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-            line-height: 1.4;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 5px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.2);
         }
+
+        .contact-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .pulse { animation: pulse 3s infinite; }
+
+        /* Responsive */
         @media (max-width: 600px) {
-            .title {
-                font-size: 28px;
-            }
-            .section-title {
-                font-size: 20px;
-            }
-            .logo img {
-                width: 60%;
-                max-width: 200px;
-            }
+            .container { padding: 0 15px; }
+            .form-container { padding: 25px; }
+            .logo img { width: 60%; max-width: 200px; }
+            .section { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" x-data="emailContactForm()">
         <p class="privacy-note-top">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
         
-        <div class="logo"><img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI brand mark logo"></div>
+        <div class="logo">
+            <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI brand mark logo">
+        </div>
         
         <h1 class="title">Enterprise AI. Fully Yours.</h1>
-        <p class="description">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants or limits.</p>
+        <p class="description">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants, leaks, or limits.</p>
         
         <div class="section">
             <h2 class="section-title">No Data Leaks</h2>
@@ -177,39 +350,129 @@
             <p class="section-description">With fixed pricing, you gain predictable billing and ROI.</p>
         </div>
         
-        <div class="contact-section" id="contact-form">
-            <div class="form-note">
-                <strong>📧 Contact Form</strong><br>
-                Submit your inquiry below. You'll be redirected to a confirmation page after submission.
+        <div class="contact-section">
+            <div class="form-container">
+                <div class="email-note">
+                    <strong>📧 Direct Email Contact</strong><br>
+                    Fill out the form below and click "Send Email" to open your email client with a pre-filled message. This ensures 100% delivery with no technical issues.
+                </div>
+                
+                <form @submit.prevent="openEmailClient" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" 
+                               id="name" 
+                               x-model="form.name"
+                               placeholder="Your Name" 
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" 
+                               id="email" 
+                               x-model="form.email"
+                               placeholder="Your Email" 
+                               required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" 
+                                  x-model="form.message"
+                                  rows="4" 
+                                  placeholder="Tell us about your AI needs..." 
+                                  required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button pulse">
+                        📧 SEND EMAIL →
+                    </button>
+                </form>
+                
+                <!-- Live Email Preview -->
+                <div x-show="form.name || form.email || form.message" 
+                     x-transition
+                     class="email-preview">
+                    <strong>📬 Email Preview:</strong><br>
+                    <strong>To:</strong> team@pauhu.ai<br>
+                    <strong>Subject:</strong> Pauhu AI Inquiry<br>
+                    <strong>Body:</strong><br>
+                    <div style="margin-top: 8px; padding-left: 10px; border-left: 2px solid rgba(255,255,255,0.3);">
+                        Name: <span x-text="form.name || '[Your Name]'"></span><br>
+                        Email: <span x-text="form.email || '[Your Email]'"></span><br>
+                        Message: <span x-text="form.message || '[Your Message]'"></span><br><br>
+                        Sent from: <span x-text="window.location.href"></span>
+                    </div>
+                </div>
+                
+                <!-- Alternative Contact Methods -->
+                <div class="alternative-contact">
+                    <p><strong>⚡ Other Ways to Reach Us:</strong></p>
+                    <a href="tel:+358-9-4135-2710" class="contact-link">📞 Call Us</a>
+                    <a href="mailto:team@pauhu.ai" class="contact-link">📧 Direct Email</a>
+                    <p style="margin-top: 10px; font-size: 12px; color: rgba(255,255,255,0.7);">
+                        All methods reach the same team. Choose what works best for you.
+                    </p>
+                </div>
+                
+                <p class="privacy-note">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
             </div>
-            
-            <!-- Direct form submission - bypasses JavaScript fetch issues -->
-            <form action="https://pauhu-contact.pauhu.workers.dev" 
-                  method="POST" 
-                  class="contact-form">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your AI needs..." required></textarea>
-                </div>
-                <input type="text" name="honeypot" class="honeypot">
-                <button type="submit" class="submit-button">ASK US ANYTHING →</button>
-            </form>
-            
-            <p class="privacy-note">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
         </div>
         
         <div class="footer">
             Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
-            Business ID: 3477255-1 · VAT ID: FI34772551 · <a href="https://pauhu.ai/legal/privacy-policy" style="color: #ccc; text-decoration: underline;">Privacy Policy</a>
+            Business ID: 3477255-1 · VAT ID: FI34772551 · 
+            <a href="https://pauhu.ai/legal/privacy-policy">Privacy Policy</a>
         </div>
     </div>
+
+    <script>
+        function emailContactForm() {
+            return {
+                form: {
+                    name: '',
+                    email: '',
+                    message: ''
+                },
+                
+                get emailLink() {
+                    const subject = encodeURIComponent('Pauhu AI Inquiry');
+                    const body = encodeURIComponent(
+                        `Name: ${this.form.name}\n` +
+                        `Email: ${this.form.email}\n` +
+                        `Message: ${this.form.message}\n\n` +
+                        `Sent from: ${window.location.href}`
+                    );
+                    return `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
+                },
+                
+                openEmailClient() {
+                    if (!this.form.name || !this.form.email || !this.form.message) {
+                        alert('Please fill out all fields before sending.');
+                        return;
+                    }
+                    
+                    console.log('📧 Opening email client with pre-filled message');
+                    console.log('To: team@pauhu.ai');
+                    console.log('Subject: Pauhu AI Inquiry');
+                    console.log('From:', this.form.name, '<' + this.form.email + '>');
+                    console.log('Message:', this.form.message);
+                    
+                    // Open email client
+                    window.location.href = this.emailLink;
+                    
+                    // Clear form after a moment
+                    setTimeout(() => {
+                        this.resetForm();
+                    }, 1000);
+                },
+                
+                resetForm() {
+                    this.form = { name: '', email: '', message: '' };
+                }
+            }
+        }
+    </script>
 </body>
 </html>
