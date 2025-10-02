@@ -149,11 +149,23 @@
             margin-bottom: 30px;
         }
 
+        .privacy-note-top {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
         .footer {
             margin-top: 40px;
             font-size: 12px;
             color: rgba(255,255,255,0.6);
             text-align: center;
+            line-height: 1.5;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: underline;
         }
 
         /* Responsive */
@@ -166,6 +178,8 @@
 </head>
 <body>
     <div class="container" x-data="preorderForm()">
+        <p class="privacy-note-top">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
+        
         <div class="logo">
             <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI">
         </div>
@@ -256,7 +270,9 @@
         </form>
         
         <div class="footer">
-            Pauhu AI Ltd · Early Access Program · team@pauhu.ai
+            Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
+            Business ID: 3477255-1 · VAT ID: FI34772551 · 
+            <a href="https://pauhu.ai/legal/privacy-policy">Privacy Policy</a>
         </div>
     </div>
 
@@ -300,21 +316,21 @@
                     const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI ${inquiryText} - €299/month`);
                     const body = encodeURIComponent(`PAUHU AI ${inquiryText.toUpperCase()}
                     
-🎫 MESSAGE ID: ${this.orderId}
-📅 DATE: ${new Date().toLocaleString()}
-📋 TYPE: ${inquiryText}
-💰 PLAN: €299/month
+MESSAGE ID: ${this.orderId}
+DATE: ${new Date().toLocaleString()}
+TYPE: ${inquiryText}
+PLAN: €299/month
 
-👤 CONTACT INFORMATION:
+CONTACT INFORMATION:
 Name: ${this.form.name}
 Email: ${this.form.email}
 Company: ${this.form.company}
 
-📋 REQUIREMENTS:
+REQUIREMENTS:
 ${this.form.requirements}
 
-🌐 SUBMITTED FROM: ${window.location.href}
-🕐 TIMESTAMP: ${new Date().toISOString()}
+SUBMITTED FROM: ${window.location.href}
+TIMESTAMP: ${new Date().toISOString()}
 
 ---
 This preorder was submitted via the Pauhu AI Early Access Program.
