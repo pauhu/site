@@ -18,86 +18,57 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            text-align: center;
-            padding-top: 40px;
+            padding-top: 20px;
         }
         .container {
-            max-width: 800px;
+            max-width: 600px;
             padding: 0 20px;
-            position: relative;
+            text-align: center;
         }
         .privacy-note-top {
-            position: absolute;
-            top: 20px;
-            right: 20px;
             font-size: 12px;
             color: #ccc;
-            text-align: right;
-            line-height: 1.4;
+            margin-bottom: 20px;
         }
         .logo img {
-            width: 120px;
+            width: 200px; /* Larger logo based on PDF */
             height: auto;
-            margin-bottom: 60px;
-            loading: "lazy"; /* Lazy loading for images */
+            margin-bottom: 40px;
+            loading: "lazy";
         }
         .title {
-            font-size: 48px;
+            font-size: 32px;
             font-weight: 700;
             margin-bottom: 20px;
             line-height: 1.2;
         }
         .description {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 50px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .button {
-            background-color: white;
-            color: #002855;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 0;
             font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 80px;
-            text-decoration: none;
-            display: inline-block;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .button:hover {
-            background-color: #f0f0f0;
+            line-height: 1.6;
+            margin-bottom: 40px;
         }
         .section {
-            margin-bottom: 60px;
-            text-align: left;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 40px;
+            text-align: center;
         }
         .section-title {
-            font-size: 32px;
+            font-size: 24px;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             line-height: 1.2;
         }
         .section-description {
             font-size: 16px;
             line-height: 1.6;
             margin-bottom: 0;
+            text-align: center;
         }
         .contact-section {
-            margin: 80px auto 60px;
-            max-width: 500px;
+            margin: 40px 0;
         }
         .contact-form {
             max-width: 400px;
-            margin: 0 auto 30px;
+            margin: 0 auto 20px;
             text-align: left;
         }
         .form-group {
@@ -128,9 +99,6 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            margin-bottom: 10px;
-            text-decoration: none;
-            display: block;
             width: 100%;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -153,7 +121,7 @@
             color: white;
         }
         .honeypot {
-            display: none; /* Hidden field for spam prevention */
+            display: none;
         }
         .privacy-note {
             font-size: 12px;
@@ -163,42 +131,21 @@
         }
         .footer {
             font-size: 12px;
-            margin-top: 80px;
-            padding-top: 40px;
+            margin-top: 40px;
+            padding-top: 20px;
             border-top: 1px solid #ccc;
             color: #ccc;
             line-height: 1.4;
         }
         @media (max-width: 600px) {
-            body {
-                padding-top: 20px;
-                align-items: center;
-                min-height: 100vh;
-            }
-            .container {
-                padding: 0 10px;
-            }
-            .privacy-note-top {
-                position: static;
-                text-align: center;
-                margin-bottom: 20px;
-            }
             .title {
-                font-size: 36px;
-            }
-            .section-title {
                 font-size: 28px;
             }
-            .description, .section-description {
-                font-size: 16px;
-            }
-            .button, .submit-button {
-                padding: 12px 24px;
-                font-size: 14px;
+            .section-title {
+                font-size: 20px;
             }
             .logo img {
-                width: 100px;
-                margin-bottom: 40px;
+                width: 150px;
             }
         }
     </style>
@@ -211,7 +158,6 @@
         
         <h1 class="title">Enterprise AI. Fully Yours.</h1>
         <p class="description">The only on-premises AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — no consultants, no leaks, no limits.</p>
-        <a href="#contact-form" class="button">ASK MORE &gt;</a>
         
         <div class="section">
             <h2 class="section-title">No Data Leaks</h2>
@@ -227,7 +173,6 @@
             <h2 class="section-title">AI as Easy as Your Morning Coffee</h2>
             <p class="section-description">Install in minutes. Start a conversation with your Pauhu AI team. Build and run AI automations intuitively – no coding needed.</p>
         </div>
-        <a href="#contact-form" class="button">TRY IT NOW &gt;</a>
         
         <div class="section">
             <h2 class="section-title">Why Pauhu AI?</h2>
@@ -250,7 +195,7 @@
                     <label for="message">Message</label>
                     <textarea id="message" name="message" rows="4" placeholder="Preorder (€229/month) Message" required></textarea>
                 </div>
-                <input type="text" name="honeypot" class="honeypot" value="" style="display: none;"> <!-- Spam prevention -->
+                <input type="text" name="honeypot" class="honeypot" value="" style="display: none;">
                 <button type="submit" class="submit-button">ASK US ANYTHING →</button>
             </form>
             <div id="formStatus" class="form-status"></div>
@@ -271,7 +216,6 @@
             const submitButton = this.querySelector('.submit-button');
             const statusDiv = document.getElementById('formStatus');
             
-            // Basic validation
             const email = this.email.value;
             if (!email.match(/^[\w\.-]+@[\w\.-]+\.\w+$/)) {
                 statusDiv.className = 'form-status error';
@@ -280,12 +224,10 @@
                 return;
             }
             
-            // Check honeypot for spam
             if (this.honeypot.value !== '') {
-                return; // Silent fail for bots
+                return;
             }
 
-            // Show loading state
             submitButton.disabled = true;
             submitButton.textContent = 'Sending...';
             statusDiv.style.display = 'none';
@@ -299,26 +241,20 @@
                 const text = await response.text();
                 
                 if (response.ok) {
-                    // Success
                     statusDiv.className = 'form-status success';
                     statusDiv.textContent = 'Thank you! We\'ll be in touch within 24 hours.';
                     statusDiv.style.display = 'block';
-                    
-                    // Reset form
                     this.reset();
                 } else {
-                    // Error
                     statusDiv.className = 'form-status error';
                     statusDiv.textContent = 'Something went wrong. Please try again or email us directly.';
                     statusDiv.style.display = 'block';
                 }
             } catch (error) {
-                // Network error
                 statusDiv.className = 'form-status error';
                 statusDiv.textContent = 'Connection error. Please check your internet and try again.';
                 statusDiv.style.display = 'block';
             } finally {
-                // Reset button
                 submitButton.disabled = false;
                 submitButton.textContent = 'ASK US ANYTHING →';
             }
