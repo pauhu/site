@@ -173,7 +173,7 @@
         <h1 class="title">Preorders at €299/month</h1>
         <p class="subtitle">Enterprise AI. Fully Yours.</p>
         
-        <div style="text-align: left; margin: 40px 0; line-height: 1.6;">
+        <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
             <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants, leaks, or limits.</p>
             
             <p style="margin-bottom: 20px;"><strong>No Data Leaks</strong><br>
@@ -189,7 +189,7 @@
             Pauhu AI is based on a deep understanding of linguistics, language technologies, data and AI models. We believe in intuitive, helpful AI that connects to any workflow. With fixed pricing, you gain predictable billing and ROI.</p>
         </div>
         
-        <div class="ticket-id" x-text="'Order ID: ' + orderId"></div>
+        <div class="ticket-id" x-text="'Message ID: ' + orderId"></div>
 
         <form @submit.prevent="submitPreorder">
             <div class="form-group">
@@ -219,25 +219,6 @@
                        required>
             </div>
 
-            <div class="form-group">
-                <label>Priority Level</label>
-                <div class="priority-options">
-                    <div class="priority-option" 
-                         :class="{ 'active': form.priority === 'standard' }"
-                         @click="form.priority = 'standard'">
-                        <input type="radio" name="priority" value="standard" x-model="form.priority">
-                        <strong>Standard</strong><br>
-                        <small>€299/month</small>
-                    </div>
-                    <div class="priority-option" 
-                         :class="{ 'active': form.priority === 'priority' }"
-                         @click="form.priority = 'priority'">
-                        <input type="radio" name="priority" value="priority" x-model="form.priority">
-                        <strong>Priority</strong><br>
-                        <small>€599/month</small>
-                    </div>
-                </div>
-            </div>
             
             <div class="form-group">
                 <label for="requirements">Your AI Requirements</label>
@@ -268,7 +249,6 @@
                     name: '',
                     email: '',
                     company: '',
-                    priority: 'standard',
                     requirements: ''
                 },
                 
@@ -286,7 +266,6 @@
                     return this.form.name && 
                            this.form.email && 
                            this.form.company && 
-                           this.form.priority && 
                            this.form.requirements;
                 },
                 
@@ -296,14 +275,12 @@
                         return;
                     }
                     
-                    const pricing = this.form.priority === 'priority' ? '€599/month' : '€299/month';
-                    
-                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Preorder - ${pricing}`);
+                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Preorder - €299/month`);
                     const body = encodeURIComponent(`PAUHU AI PREORDER
                     
-ORDER ID: ${this.orderId}
+MESSAGE ID: ${this.orderId}
 DATE: ${new Date().toLocaleString()}
-PLAN: ${this.form.priority.toUpperCase()} (${pricing})
+PLAN: €299/month
 
 CONTACT INFORMATION:
 Name: ${this.form.name}
@@ -333,7 +310,6 @@ Please contact me to finalize the order and setup.`);
                         name: '',
                         email: '',
                         company: '',
-                        priority: 'standard',
                         requirements: ''
                     };
                     this.generateOrderId();
