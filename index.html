@@ -196,16 +196,118 @@
             text-decoration: underline;
         }
 
+        .text-size-selector {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+            z-index: 1000;
+        }
+
+        .text-size-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            padding: 6px 10px;
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .text-size-btn:hover,
+        .text-size-btn.active {
+            border-color: white;
+            color: white;
+            background: rgba(255,255,255,0.2);
+        }
+
+        .text-small { font-size: 90%; }
+        .text-normal { font-size: 100%; }
+        .text-large { font-size: 110%; }
+        .text-xl { font-size: 125%; }
+
         /* Responsive */
-        @media (max-width: 600px) {
-            .container { padding: 0 15px; }
-            .title { font-size: 28px; }
-            .inquiry-options { flex-direction: column; align-items: center; }
+        @media (max-width: 768px) {
+            .container { padding: 0 15px; max-width: 100%; }
+            .title { font-size: clamp(24px, 6vw, 32px); }
+            .subtitle { font-size: clamp(14px, 4vw, 18px); }
+            .inquiry-options { 
+                flex-direction: column; 
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+            }
+            .inquiry-option {
+                width: 100%;
+                max-width: 200px;
+                text-align: center;
+            }
+            .form-group input,
+            .form-group textarea {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            .text-size-selector {
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
+                gap: 4px;
+            }
+            .text-size-btn {
+                padding: 8px;
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container { padding: 0 10px; }
+            .logo img { width: 70%; }
+            .form-container { padding: 20px 15px; }
+        }
+
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .inquiry-option {
+                border-color: white;
+            }
+            .form-group input,
+            .form-group textarea {
+                border-color: white;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                transition: none !important;
+                animation: none !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container" x-data="preorderForm()">
+    <!-- Text Size Selector -->
+    <div class="text-size-selector" x-data="{ textSize: 'normal' }">
+        <button class="text-size-btn" 
+                :class="{ 'active': textSize === 'small' }"
+                @click="textSize = 'small'; document.body.className = 'text-small'"
+                aria-label="Small text size">A</button>
+        <button class="text-size-btn" 
+                :class="{ 'active': textSize === 'normal' }"
+                @click="textSize = 'normal'; document.body.className = 'text-normal'"
+                aria-label="Normal text size">A</button>
+        <button class="text-size-btn" 
+                :class="{ 'active': textSize === 'large' }"
+                @click="textSize = 'large'; document.body.className = 'text-large'"
+                aria-label="Large text size">A</button>
+        <button class="text-size-btn" 
+                :class="{ 'active': textSize === 'xl' }"
+                @click="textSize = 'xl'; document.body.className = 'text-xl'"
+                aria-label="Extra large text size">A</button>
+    </div>
+
+    <div class="container" x-data="preorderForm()" :class="'text-' + (window.textSize || 'normal')">
         <p class="privacy-note-top">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
         
         <div class="logo">
@@ -216,7 +318,7 @@
         <p class="subtitle">Enterprise AI. Fully Yours.</p>
         
         <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
-            <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants, leaks, or limits.</p>
+            <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants or limits.</p>
             
             <p style="margin-bottom: 20px;"><strong>No Data Leaks</strong><br>
             The only AI platform that runs 100% on-premise – or off-grid. You decide.</p>
