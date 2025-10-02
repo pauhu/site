@@ -171,7 +171,23 @@
         </div>
         
         <h1 class="title">Preorders at €299/month</h1>
-        <p class="subtitle">Enterprise AI. Fully Yours. Get early access with special pricing.</p>
+        <p class="subtitle">Enterprise AI. Fully Yours.</p>
+        
+        <div style="text-align: left; margin: 40px 0; line-height: 1.6;">
+            <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants, leaks, or limits.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>No Data Leaks</strong><br>
+            The only AI platform that runs 100% on-premise – or off-grid. You decide.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Fixed Pricing</strong><br>
+            One flat user fee. Unlimited usage per user.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>AI as Easy as Your Morning Coffee</strong><br>
+            Install in minutes. Start a conversation with your Pauhu AI team. Build and run AI automations intuitively.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Why Pauhu AI?</strong><br>
+            Pauhu AI is based on a deep understanding of linguistics, language technologies, data and AI models. We believe in intuitive, helpful AI that connects to any workflow. With fixed pricing, you gain predictable billing and ROI.</p>
+        </div>
         
         <div class="ticket-id" x-text="'Order ID: ' + orderId"></div>
 
@@ -285,20 +301,20 @@
                     const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Preorder - ${pricing}`);
                     const body = encodeURIComponent(`PAUHU AI PREORDER
                     
-🎫 ORDER ID: ${this.orderId}
-📅 DATE: ${new Date().toLocaleString()}
-💰 PLAN: ${this.form.priority.toUpperCase()} (${pricing})
+ORDER ID: ${this.orderId}
+DATE: ${new Date().toLocaleString()}
+PLAN: ${this.form.priority.toUpperCase()} (${pricing})
 
-👤 CONTACT INFORMATION:
+CONTACT INFORMATION:
 Name: ${this.form.name}
 Email: ${this.form.email}
 Company: ${this.form.company}
 
-📋 REQUIREMENTS:
+REQUIREMENTS:
 ${this.form.requirements}
 
-🌐 SUBMITTED FROM: ${window.location.href}
-🕐 TIMESTAMP: ${new Date().toISOString()}
+SUBMITTED FROM: ${window.location.href}
+TIMESTAMP: ${new Date().toISOString()}
 
 ---
 This preorder was submitted via the Pauhu AI Early Access Program.
