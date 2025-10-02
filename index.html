@@ -124,30 +124,29 @@
         }
 
         .submit-button {
-            background: linear-gradient(45deg, #60a5fa, #3b82f6);
-            color: white;
-            padding: 20px 35px;
-            border: none;
-            border-radius: 8px;
-            font-size: 18px;
-            font-weight: 700;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            font-weight: normal;
             cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             transition: all 0.3s ease;
+            text-transform: none;
+            letter-spacing: normal;
         }
 
-        .submit-button:hover {
-            background: linear-gradient(45deg, #3b82f6, #2563eb);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(59,130,246,0.4);
+        .submit-button:hover:not(:disabled) {
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+            background: rgba(255,255,255,0.1);
         }
 
         .submit-button:disabled {
-            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.4);
             cursor: not-allowed;
-            transform: none;
         }
 
         .ticket-id {
@@ -271,7 +270,7 @@
             <button type="submit" 
                     class="submit-button"
                     :disabled="!isFormValid">
-                SUBMIT PREORDER
+                Submit
             </button>
         </form>
         
