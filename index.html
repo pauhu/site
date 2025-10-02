@@ -31,7 +31,8 @@
             margin-bottom: 20px;
         }
         .logo img {
-            width: 400px;
+            width: 50%;
+            max-width: 300px;
             height: auto;
             margin-bottom: 40px;
             loading: "lazy";
@@ -145,7 +146,8 @@
                 font-size: 20px;
             }
             .logo img {
-                width: 150px;
+                width: 60%;
+                max-width: 200px;
             }
         }
     </style>
@@ -235,7 +237,8 @@
             try {
                 const response = await fetch('https://pauhu-contact.pauhu.workers.dev', {
                     method: 'POST',
-                    body: formData
+                    body: formData,
+                    mode: 'cors'
                 });
                 
                 const text = await response.text();
@@ -251,8 +254,17 @@
                     statusDiv.style.display = 'block';
                 }
             } catch (error) {
+                // Fallback to mailto if connection fails
+                const name = this.name.value;
+                const email = this.email.value;
+                const message = this.message.value;
+                
+                const subject = encodeURIComponent('Preorder Enquiry - Pauhu AI');
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                const mailtoLink = `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
+                
                 statusDiv.className = 'form-status error';
-                statusDiv.textContent = 'Connection error. Please check your internet and try again.';
+                statusDiv.innerHTML = `Connection error. <a href="${mailtoLink}" style="color: white; text-decoration: underline;">Click here to send via email</a> or try again later.`;
                 statusDiv.style.display = 'block';
             } finally {
                 submitButton.disabled = false;
