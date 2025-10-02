@@ -120,7 +120,15 @@
         }
 
         .inquiry-option input[type="radio"] {
-            display: none;
+            position: absolute;
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+        }
+        
+        .inquiry-option:focus-within {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
         }
 
         .submit-button {
@@ -147,6 +155,19 @@
             border-color: rgba(255,255,255,0.2);
             color: rgba(255,255,255,0.4);
             cursor: not-allowed;
+        }
+        
+        .submit-button:focus {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+            background: rgba(255,255,255,1);
+            box-shadow: 0 0 0 2px rgba(96,165,250,0.3);
         }
 
         .ticket-id {
@@ -211,20 +232,31 @@
         </div>
         
         <div class="inquiry-selector">
-            <div class="inquiry-options">
-                <div class="inquiry-option" 
-                     :class="{ 'active': form.inquiryType === 'preorder' }"
-                     @click="form.inquiryType = 'preorder'">
-                    <input type="radio" name="inquiryType" value="preorder" x-model="form.inquiryType">
-                    Preorder (Q4/2025)
+            <fieldset style="border: none; margin: 0; padding: 0;">
+                <legend style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9);">Select inquiry type</legend>
+                <div class="inquiry-options" role="radiogroup" aria-label="Inquiry type selection">
+                    <label class="inquiry-option" 
+                           :class="{ 'active': form.inquiryType === 'preorder' }">
+                        <input type="radio" 
+                               name="inquiryType" 
+                               value="preorder" 
+                               x-model="form.inquiryType"
+                               aria-describedby="preorder-desc">
+                        <span>Preorder</span>
+                        <span id="preorder-desc" style="font-size: 12px; opacity: 0.8;">(Q4/2025)</span>
+                    </label>
+                    <label class="inquiry-option" 
+                           :class="{ 'active': form.inquiryType === 'ask' }">
+                        <input type="radio" 
+                               name="inquiryType" 
+                               value="ask" 
+                               x-model="form.inquiryType"
+                               aria-describedby="ask-desc">
+                        <span>Ask</span>
+                        <span id="ask-desc" style="font-size: 12px; opacity: 0.8;">General inquiry</span>
+                    </label>
                 </div>
-                <div class="inquiry-option" 
-                     :class="{ 'active': form.inquiryType === 'ask' }"
-                     @click="form.inquiryType = 'ask'">
-                    <input type="radio" name="inquiryType" value="ask" x-model="form.inquiryType">
-                    Ask
-                </div>
-            </div>
+            </fieldset>
         </div>
 
         <div class="ticket-id" x-text="'Message ID: ' + orderId"></div>
@@ -269,7 +301,8 @@
             
             <button type="submit" 
                     class="submit-button"
-                    :disabled="!isFormValid">
+                    :disabled="!isFormValid"
+                    :aria-label="form.inquiryType === 'preorder' ? 'Submit preorder form' : 'Submit inquiry form'">
                 Submit
             </button>
         </form>
