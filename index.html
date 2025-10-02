@@ -219,6 +219,25 @@
                        required>
             </div>
 
+            <div class="form-group">
+                <label>Inquiry Type</label>
+                <div class="priority-options">
+                    <div class="priority-option" 
+                         :class="{ 'active': form.inquiryType === 'preorder' }"
+                         @click="form.inquiryType = 'preorder'">
+                        <input type="radio" name="inquiryType" value="preorder" x-model="form.inquiryType">
+                        <strong>Preorder</strong><br>
+                        <small>(Q4/2025)</small>
+                    </div>
+                    <div class="priority-option" 
+                         :class="{ 'active': form.inquiryType === 'ask' }"
+                         @click="form.inquiryType = 'ask'">
+                        <input type="radio" name="inquiryType" value="ask" x-model="form.inquiryType">
+                        <strong>Ask</strong><br>
+                        <small>General inquiry</small>
+                    </div>
+                </div>
+            </div>
             
             <div class="form-group">
                 <label for="requirements">Your AI Requirements</label>
@@ -249,6 +268,7 @@
                     name: '',
                     email: '',
                     company: '',
+                    inquiryType: 'preorder',
                     requirements: ''
                 },
                 
@@ -266,6 +286,7 @@
                     return this.form.name && 
                            this.form.email && 
                            this.form.company && 
+                           this.form.inquiryType && 
                            this.form.requirements;
                 },
                 
@@ -275,23 +296,25 @@
                         return;
                     }
                     
-                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Preorder - €299/month`);
-                    const body = encodeURIComponent(`PAUHU AI PREORDER
+                    const inquiryText = this.form.inquiryType === 'preorder' ? 'Preorder (Q4/2025)' : 'General Inquiry';
+                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI ${inquiryText} - €299/month`);
+                    const body = encodeURIComponent(`PAUHU AI ${inquiryText.toUpperCase()}
                     
-MESSAGE ID: ${this.orderId}
-DATE: ${new Date().toLocaleString()}
-PLAN: €299/month
+🎫 MESSAGE ID: ${this.orderId}
+📅 DATE: ${new Date().toLocaleString()}
+📋 TYPE: ${inquiryText}
+💰 PLAN: €299/month
 
-CONTACT INFORMATION:
+👤 CONTACT INFORMATION:
 Name: ${this.form.name}
 Email: ${this.form.email}
 Company: ${this.form.company}
 
-REQUIREMENTS:
+📋 REQUIREMENTS:
 ${this.form.requirements}
 
-SUBMITTED FROM: ${window.location.href}
-TIMESTAMP: ${new Date().toISOString()}
+🌐 SUBMITTED FROM: ${window.location.href}
+🕐 TIMESTAMP: ${new Date().toISOString()}
 
 ---
 This preorder was submitted via the Pauhu AI Early Access Program.
@@ -310,6 +333,7 @@ Please contact me to finalize the order and setup.`);
                         name: '',
                         email: '',
                         company: '',
+                        inquiryType: 'preorder',
                         requirements: ''
                     };
                     this.generateOrderId();
