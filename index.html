@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pauhu AI - Early Access</title>
+    <title>Pauhu AI - Preorder €299/month</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <style>
@@ -308,7 +308,7 @@
     </div>
 
     <div class="container" x-data="preorderForm()" :class="'text-' + (window.textSize || 'normal')">
-        <p class="privacy-note-top">Built-in data sovereignty · GDPR and EU AI Act compliant</p>
+        <p class="privacy-note-top">Built-in data sovereignty · Compliant with GDPR and the EU AI Act</p>
         
         <div class="logo">
             <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI">
@@ -317,50 +317,6 @@
         <h1 class="title">Early Access</h1>
         <p class="subtitle">Enterprise AI. Fully Yours.</p>
         
-        <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
-            <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants or limits.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>No Data Leaks</strong><br>
-            The only AI platform that runs 100% on-premise – or off-grid. You decide.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>Fixed Pricing</strong><br>
-            One flat user fee. Unlimited usage per user.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>AI as Easy as Your Morning Coffee</strong><br>
-            Install in minutes. Start a conversation with your Pauhu AI team. Build and run AI automations intuitively.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>Why Pauhu AI?</strong><br>
-            Pauhu AI is based on a deep understanding of linguistics, language technologies, data and AI models. We believe in intuitive, helpful AI that connects to any workflow. With fixed pricing, you gain predictable billing and ROI.</p>
-        </div>
-        
-        <div class="inquiry-selector">
-            <fieldset style="border: none; margin: 0; padding: 0;">
-                <legend style="font-size: 14px; font-weight: 600; margin-bottom: 8px; color: rgba(255,255,255,0.9);">Select inquiry type</legend>
-                <div class="inquiry-options" role="radiogroup" aria-label="Inquiry type selection">
-                    <label class="inquiry-option" 
-                           :class="{ 'active': form.inquiryType === 'preorder' }">
-                        <input type="radio" 
-                               name="inquiryType" 
-                               value="preorder" 
-                               x-model="form.inquiryType"
-                               aria-describedby="preorder-desc">
-                        <span>Preorder</span>
-                        <span id="preorder-desc" style="font-size: 12px; opacity: 0.8;">(Q4/2025)</span>
-                    </label>
-                    <label class="inquiry-option" 
-                           :class="{ 'active': form.inquiryType === 'reserve' }">
-                        <input type="radio" 
-                               name="inquiryType" 
-                               value="reserve" 
-                               x-model="form.inquiryType"
-                               aria-describedby="reserve-desc">
-                        <span>Reserve Your Spot</span>
-                        <span id="reserve-desc" style="font-size: 12px; opacity: 0.8;">(Early Access, No Payment Now)</span>
-                    </label>
-                </div>
-            </fieldset>
-        </div>
-
         <div class="ticket-id" x-text="'Message ID: ' + orderId"></div>
 
         <form @submit.prevent="submitPreorder">
@@ -404,10 +360,26 @@
             <button type="submit" 
                     class="submit-button"
                     :disabled="!isFormValid"
-                    x-text="form.inquiryType === 'preorder' ? 'Confirm Preorder' : 'Reserve My Spot'"
-                    :aria-label="form.inquiryType === 'preorder' ? 'Confirm preorder form submission' : 'Reserve early access spot'">
+                    aria-label="Reserve early access spot">
+                Reserve My Spot
             </button>
         </form>
+        
+        <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
+            <p style="margin-bottom: 20px;">The only on-premise AI platform with fixed pricing, full data control, and instant setup. Talk to Pauhu AI and build AI automations your way — without consultants, leaks, or limits.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>No Data Leaks</strong><br>
+            The only AI platform that runs 100% on-premise – or off-grid. You decide.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Fixed Pricing</strong><br>
+            One flat user fee. Unlimited usage per user.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>AI as Easy as Your Morning Coffee</strong><br>
+            Install in minutes. Start a conversation with your Pauhu AI team. Build and run AI automations intuitively.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Why Pauhu AI?</strong><br>
+            Pauhu AI is based on a deep understanding of linguistics, language technologies, data and AI models. We believe in intuitive, helpful AI that connects to any workflow. With fixed pricing, you gain predictable billing and ROI.</p>
+        </div>
         
         <div class="footer">
             Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
@@ -424,7 +396,6 @@
                     name: '',
                     email: '',
                     company: '',
-                    inquiryType: 'reserve',
                     requirements: ''
                 },
                 
@@ -442,7 +413,6 @@
                     return this.form.name && 
                            this.form.email && 
                            this.form.company && 
-                           this.form.inquiryType && 
                            this.form.requirements;
                 },
                 
@@ -452,21 +422,8 @@
                         return;
                     }
                     
-                    let inquiryText, subject, body;
-                    
-                    if (this.form.inquiryType === 'preorder') {
-                        inquiryText = 'Preorder (Q4/2025)';
-                        subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Preorder`);
-                        body = encodeURIComponent(`PAUHU AI PREORDER
-                    
-MESSAGE ID: ${this.orderId}
-DATE: ${new Date().toLocaleString()}
-TYPE: Preorder
-TIMELINE: Q4/2025`);
-                    } else {
-                        inquiryText = 'Early Access Reservation (No Payment Now)';
-                        subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Early Access Reservation`);
-                        body = encodeURIComponent(`PAUHU AI EARLY ACCESS RESERVATION
+                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Early Access Reservation`);
+                    const body = encodeURIComponent(`PAUHU AI EARLY ACCESS RESERVATION
                     
 MESSAGE ID: ${this.orderId}
 DATE: ${new Date().toLocaleString()}
@@ -484,9 +441,9 @@ ${this.form.requirements}
 SUBMITTED FROM: ${window.location.href}
 TIMESTAMP: ${new Date().toISOString()}
 
-${this.form.inquiryType === 'preorder' ? `---
+---
 This early access reservation was submitted via the Pauhu AI Early Access Program.
-Please contact me when the platform is available for early access.`}`);
+Please contact me when the platform is available for early access.`);
                     
                     const emailLink = `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
                     
@@ -501,7 +458,6 @@ Please contact me when the platform is available for early access.`}`);
                         name: '',
                         email: '',
                         company: '',
-                        inquiryType: 'reserve',
                         requirements: ''
                     };
                     this.generateOrderId();
