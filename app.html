@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pauhu AI - Lightning Fast • Always Consistent</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#002855">
+    <link rel="manifest" href="/manifest.json">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #002855 0%, #003875 100%);
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .app-container {
+            max-width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .status-bar {
+            background: rgba(0,0,0,0.3);
+            padding: 8px 16px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .connection-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #4ade80;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.offline {
+            background: #ef4444;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .header {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+        }
+
+        .app-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .app-subtitle {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-card:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-2px);
+        }
+
+        .action-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .action-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .action-desc {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .chat-container {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 200px;
+        }
+
+        .chat-input {
+            width: 100%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 15px;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .send-button {
+            background: #60a5fa;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 20px;
+            color: white;
+            font-weight: 600;
+            margin-top: 10px;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .send-button:hover {
+            background: #4f94d4;
+        }
+
+        .windows-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .window-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .window-card:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .window-number {
+            font-weight: 700;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .bottom-nav {
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active {
+            color: #60a5fa;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+        }
+
+        .model-status {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .model-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .model-name {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .model-size {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            height: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #60a5fa;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container" x-data="pauhuApp()">
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="connection-status">
+                <div class="status-dot" :class="{ 'offline': !isConnected }"></div>
+                <span x-text="connectionStatus"></span>
+            </div>
+            <div x-text="currentTime"></div>
+        </div>
+
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">🤖</div>
+            <div class="app-title">Pauhu AI Preview</div>
+            <div class="app-subtitle" x-text="activeWindows + ' windows active'"></div>
+            
+            
+            <nav style="text-align: center; margin-top: 15px;">
+                <a href="/index.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 12px; font-size: 12px;">Home</a>
+                <a href="/install.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 12px; font-size: 12px;">Install</a>
+                <a href="/pricing.html" style="color: rgba(255,255,255,0.7); text-decoration: none; margin: 0 12px; font-size: 12px;">Pricing</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Model Loading Status -->
+            <div class="model-status" x-show="isLoadingModel">
+                <div class="model-info">
+                    <span class="model-name" x-text="currentModel.name"></span>
+                    <span class="model-size" x-text="currentModel.size"></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" :style="'width: ' + loadingProgress + '%'"></div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-card" @click="quickAction('translate')">
+                    <span class="action-icon">🌐</span>
+                    <div class="action-title">Translate</div>
+                    <div class="action-desc">Window 1</div>
+                </div>
+                <div class="action-card" @click="quickAction('vision')">
+                    <span class="action-icon">👁️</span>
+                    <div class="action-title">Vision</div>
+                    <div class="action-desc">Window 5</div>
+                </div>
+                <div class="action-card" @click="quickAction('voice')">
+                    <span class="action-icon">🎤</span>
+                    <div class="action-title">Voice</div>
+                    <div class="action-desc">Window 4</div>
+                </div>
+                <div class="action-card" @click="quickAction('chat')">
+                    <span class="action-icon">💬</span>
+                    <div class="action-title">Chat</div>
+                    <div class="action-desc">Window 33</div>
+                </div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div class="chat-container">
+                <textarea 
+                    class="chat-input" 
+                    x-model="userInput"
+                    placeholder="Type your message to Pauhu AI..."
+                    rows="4"
+                    @keydown.enter.ctrl="sendMessage()"></textarea>
+                <button class="send-button" @click="sendMessage()" :disabled="!userInput.trim()">
+                    Send to AI
+                </button>
+            </div>
+
+            <!-- Windows Grid -->
+            <div class="windows-grid">
+                <template x-for="window in availableWindows" :key="window.id">
+                    <div class="window-card" @click="selectWindow(window)">
+                        <div class="window-number" x-text="'W' + window.id"></div>
+                        <div x-text="window.name"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <span class="nav-icon">🏠</span>
+                <span>Home</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">🔧</span>
+                <span>Tools</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span>Stats</span>
+            </div>
+            <div class="nav-item">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        function pauhuApp() {
+            return {
+                isConnected: false,
+                connectionStatus: 'Loading Pauhu AI...',
+                currentTime: '',
+                activeWindows: 50,
+                userInput: '',
+                isLoadingModel: false,
+                loadingProgress: 0,
+                currentModel: {
+                    name: 'Mini Model',
+                    size: '50MB'
+                },
+                availableWindows: [
+                    { id: 1, name: 'Translator' }, { id: 2, name: 'Format' }, { id: 3, name: 'Domain' },
+                    { id: 4, name: 'Voice' }, { id: 5, name: 'Vision' }, { id: 6, name: 'Knowledge' },
+                    { id: 7, name: 'Context' }, { id: 8, name: 'Control' }, { id: 9, name: 'Semantic' },
+                    { id: 11, name: 'Privacy' }, { id: 12, name: 'Bias' }, { id: 13, name: 'Toxicity' },
+                    { id: 14, name: 'Usage' }, { id: 15, name: 'Reliability' }, { id: 16, name: 'Security' },
+                    { id: 17, name: 'Compliance' }, { id: 18, name: 'Oversight' }, { id: 19, name: 'Redaction' },
+                    { id: 21, name: 'Usage Meter' }, { id: 22, name: 'Performance' }, { id: 23, name: 'Explainer' },
+                    { id: 31, name: 'RAG' }, { id: 32, name: 'Vector Search' }, { id: 33, name: 'Chat' },
+                    { id: 34, name: 'Vision Builder' }, { id: 35, name: 'Voice Builder' }, { id: 36, name: 'Fine-Tuner' },
+                    { id: 37, name: 'Data Connector' }, { id: 38, name: 'Inference' }, { id: 39, name: 'Agent Builder' },
+                    { id: 41, name: 'Batch' }, { id: 42, name: 'Stream' }, { id: 43, name: 'Cost' },
+                    { id: 44, name: 'Cache' }, { id: 45, name: 'Experiment' }, { id: 46, name: 'Scale' },
+                    { id: 47, name: 'Insights' }, { id: 48, name: 'Market' }, { id: 49, name: 'Sandbox' }
+                ],
+
+                init() {
+                    this.updateTime();
+                    setInterval(() => this.updateTime(), 1000);
+                    this.checkConnection();
+                    this.loadMiniModel();
+                },
+
+                updateTime() {
+                    this.currentTime = new Date().toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                },
+
+                async checkConnection() {
+                    try {
+                        // First try local Pauhu AI
+                        const localResponse = await fetch('http://localhost:8000/v1/health', {
+                            method: 'GET',
+                            timeout: 1000
+                        });
+                        
+                        if (localResponse.ok) {
+                            this.isConnected = true;
+                            this.connectionStatus = 'Local Pauhu AI';
+                            this.activeWindows = 50;
+                            return;
+                        }
+                    } catch (error) {
+                        // Local not available, try Cloudflare API
+                        try {
+                            const cloudResponse = await fetch('https://api.pauhu.ai/v1/health', {
+                                method: 'GET'
+                            });
+                            
+                            if (cloudResponse.ok) {
+                                this.isConnected = true;
+                                this.connectionStatus = 'Cloud Pauhu AI';
+                                this.activeWindows = 50;
+                                return;
+                            }
+                        } catch (cloudError) {
+                            // No connection available
+                        }
+                    }
+                    
+                    this.isConnected = false;
+                    this.connectionStatus = 'Connecting...';
+                    setTimeout(() => this.checkConnection(), 3000);
+                },
+
+                async loadMiniModel() {
+                    this.isLoadingModel = true;
+                    this.loadingProgress = 0;
+                    
+                    // Simulate mini model loading
+                    const interval = setInterval(() => {
+                        this.loadingProgress += 10;
+                        if (this.loadingProgress >= 100) {
+                            clearInterval(interval);
+                            this.isLoadingModel = false;
+                        }
+                    }, 200);
+                },
+
+                quickAction(action) {
+                    const actions = {
+                        translate: 'Open translator window',
+                        vision: 'Activate camera for vision processing',
+                        voice: 'Start voice input',
+                        chat: 'Open chat interface'
+                    };
+                    
+                    this.userInput = actions[action] || action;
+                },
+
+                async sendMessage() {
+                    if (!this.userInput.trim()) return;
+                    
+                    const message = this.userInput;
+                    this.userInput = '';
+                    
+                    // Show sending state
+                    const originalButton = document.querySelector('.send-button');
+                    const originalText = originalButton.textContent;
+                    originalButton.textContent = 'Sending...';
+                    originalButton.disabled = true;
+                    
+                    try {
+                        let endpoint;
+                        let timeout = 10000; // 10 second timeout
+                        
+                        // Try local first, then cloud
+                        if (this.connectionStatus === 'Local Pauhu AI') {
+                            endpoint = 'http://localhost:8000/v1/orchestrate';
+                            timeout = 5000; // Faster timeout for local
+                        } else {
+                            endpoint = 'https://api.pauhu.ai/v1/orchestrate';
+                        }
+                        
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), timeout);
+                        
+                        const response = await fetch(endpoint, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                message: message,
+                                windows: ['auto-detect'],
+                                source: 'mobile-app',
+                                timestamp: Date.now()
+                            }),
+                            signal: controller.signal
+                        });
+                        
+                        clearTimeout(timeoutId);
+                        
+                        if (!response.ok) {
+                            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                        }
+                        
+                        const result = await response.json();
+                        console.log('AI Response:', result);
+                        
+                        // Show response to user
+                        this.showAIResponse(result);
+                        
+                    } catch (error) {
+                        console.error('Failed to send message:', error);
+                        
+                        // Handle different types of errors
+                        let errorMessage = 'Unknown error occurred';
+                        
+                        if (error.name === 'AbortError') {
+                            errorMessage = 'Request timed out. Please try again.';
+                        } else if (error.message.includes('HTTP')) {
+                            errorMessage = `Server error: ${error.message}`;
+                        } else if (error.message.includes('Failed to fetch')) {
+                            errorMessage = 'No internet connection. Models will load when connected.';
+                        } else {
+                            errorMessage = `Connection failed: ${error.message}`;
+                        }
+                        
+                        this.showError(errorMessage);
+                        
+                        // Restore input if failed
+                        this.userInput = message;
+                    } finally {
+                        // Restore button state
+                        originalButton.textContent = originalText;
+                        originalButton.disabled = false;
+                    }
+                },
+                
+                showAIResponse(result) {
+                    // Create a simple response display
+                    const responseText = result.response || result.message || 'Message received successfully';
+                    
+                    // For demo purposes, use alert (in production, show in chat interface)
+                    alert(`AI Response: ${responseText}`);
+                },
+                
+                showError(message) {
+                    // Show error in a user-friendly way
+                    alert(`⚠️ ${message}`);
+                    
+                    // Update connection status if network error
+                    if (message.includes('No internet') || message.includes('timed out')) {
+                        this.isConnected = false;
+                        this.connectionStatus = 'Offline';
+                    }
+                },
+
+                selectWindow(window) {
+                    this.userInput = `Use Window ${window.id} (${window.name}) to help me with: `;
+                }
+            }
+        }
+
+        // Register service worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
+</html>

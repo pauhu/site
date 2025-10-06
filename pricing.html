@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pauhu AI Pricing - Lightning Fast • Always Consistent • Fixed Annual Licenses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #002855;
+            color: white;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 10px;
+        }
+
+        .pricing-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .pricing-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 8px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        .pricing-card.popular {
+            border-color: #60a5fa;
+            background: rgba(96,165,250,0.1);
+        }
+
+        .popular-badge {
+            background: #60a5fa;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .plan-name {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .plan-price {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .plan-period {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .plan-devices {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 25px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .features-list li {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: rgba(255,255,255,0.8);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .choose-button {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            padding: 12px 24px;
+            color: rgba(255,255,255,0.8);
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .choose-button:hover {
+            border-color: rgba(255,255,255,0.5);
+            color: white;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .popular .choose-button {
+            background: #60a5fa;
+            border-color: #60a5fa;
+            color: white;
+        }
+
+        .popular .choose-button:hover {
+            background: #4f94d4;
+            border-color: #4f94d4;
+        }
+
+        .comparison-section {
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .comparison-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .comparison-table {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .vs-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .vs-row:last-child {
+            border-bottom: none;
+        }
+
+        .vs-competitor {
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .vs-price {
+            font-weight: 600;
+            color: white;
+        }
+
+        .vs-pauhu {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+
+        .benefits-section {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .benefit-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .benefit-text {
+            font-size: 14px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
+        }
+
+        .footer a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .vs-row {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <nav style="text-align: center; margin-bottom: 30px;">
+            <a href="/index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Home</a>
+            <a href="/pricing.html" style="color: white; text-decoration: none; margin: 0 15px; font-size: 14px;">Pricing</a>
+            <a href="/about.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">About</a>
+            <a href="/hardware.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Hardware</a>
+            <a href="/legal/privacy.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; transition: color 0.3s ease;" onmouseover="this.style.color='white'" onmouseout="this.style.color='rgba(255,255,255,0.8)'">Legal</a>
+        </nav>
+        
+        <div class="logo">
+            <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI">
+        </div>
+        <h1 class="title">Fixed Annual AI Pricing</h1>
+        <p class="subtitle">From €249/year • No per-token costs • No surprise bills</p>
+        <p class="subtitle">One license, unlimited usage. Built for developers who demand better.</p>
+        <div style="background: rgba(96,165,250,0.2); padding: 15px; border-radius: 8px; margin: 20px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <strong style="color: #60a5fa;">Pre-Launch Pricing:</strong> 
+            Reserve your license now. Pay when we launch.
+        </div>
+    </div>
+
+    <div class="pricing-container">
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Single</div>
+                <div class="plan-price">€249</div>
+                <div class="plan-period">per year</div>
+                <div class="plan-devices">1 device</div>
+                <ul class="features-list">
+                    <li>Complete AI toolkit</li>
+                    <li>Local installation</li>
+                    <li>Translation, vision, speech, documents</li>
+                    <li>Unlimited usage</li>
+                    <li>Offline capable</li>
+                </ul>
+                <button class="choose-button" onclick="openReservation('Single')">Reserve Single</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-name">Dual</div>
+                <div class="plan-price">€349</div>
+                <div class="plan-period">per year</div>
+                <div class="plan-devices">2 devices</div>
+                <ul class="features-list">
+                    <li>Complete AI toolkit</li>
+                    <li>Local installation</li>
+                    <li>Translation, vision, speech, documents</li>
+                    <li>Unlimited usage</li>
+                    <li>Offline capable</li>
+                </ul>
+                <button class="choose-button" onclick="openReservation('Dual')">Reserve Dual</button>
+            </div>
+
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <div class="plan-name">Team</div>
+                <div class="plan-price">€549</div>
+                <div class="plan-period">per year</div>
+                <div class="plan-devices">5 devices</div>
+                <ul class="features-list">
+                    <li>Complete AI toolkit</li>
+                    <li>Local installation</li>
+                    <li>Translation, vision, speech, documents</li>
+                    <li>Unlimited usage</li>
+                    <li>Offline capable</li>
+                </ul>
+                <button class="choose-button" onclick="openReservation('Team')">Reserve Team</button>
+            </div>
+
+            <div class="pricing-card">
+                <div class="plan-name">Scale</div>
+                <div class="plan-price">€899</div>
+                <div class="plan-period">per year</div>
+                <div class="plan-devices">10 devices</div>
+                <ul class="features-list">
+                    <li>Complete AI toolkit</li>
+                    <li>Local installation</li>
+                    <li>Translation, vision, speech, documents</li>
+                    <li>Unlimited usage</li>
+                    <li>Offline capable</li>
+                </ul>
+                <button class="choose-button" onclick="openReservation('Scale')">Reserve Scale</button>
+            </div>
+        </div>
+
+        <div class="comparison-section">
+            <h2 class="comparison-title">Why Buy Individual Tools When You Can Get Everything?</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px;">
+                    <h3 style="color: rgba(255,255,255,0.7); margin-bottom: 20px;">Individual AI Tools</h3>
+                    <div class="vs-row">
+                        <div class="vs-competitor">Code Assistant</div>
+                        <div class="vs-price">€468/year per person</div>
+                    </div>
+                    <div class="vs-row">
+                        <div class="vs-competitor">Chat AI Service</div>
+                        <div class="vs-price">€240/year per person</div>
+                    </div>
+                    <div class="vs-row">
+                        <div class="vs-competitor">Translation Service</div>
+                        <div class="vs-price">€200/year per person</div>
+                    </div>
+                    <div class="vs-row">
+                        <div class="vs-competitor">Vision API</div>
+                        <div class="vs-price">€150/year per person</div>
+                    </div>
+                    <div class="vs-row" style="border-top: 1px solid rgba(255,255,255,0.2); margin-top: 15px; padding-top: 15px; font-weight: bold;">
+                        <div style="color: #ff6b6b;">Individual Total</div>
+                        <div style="color: #ff6b6b;">€1,058/year per person</div>
+                    </div>
+                </div>
+                
+                <div style="background: rgba(96,165,250,0.1); padding: 25px; border-radius: 8px; border: 2px solid #60a5fa;">
+                    <div style="background: #60a5fa; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 15px; display: inline-block;">COMPLETE PACKAGE</div>
+                    <h3 style="color: #60a5fa; margin-bottom: 20px;">Pauhu Team License</h3>
+                    <div style="margin-bottom: 15px;">
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Universal AI platform</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ 5 device licenses</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Translation, Vision, Speech, Documents</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Works offline</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Unlimited usage</div>
+                    </div>
+                    <div style="font-size: 32px; font-weight: bold; color: #60a5fa; margin: 15px 0;">€549/year</div>
+                    <div style="font-size: 18px; font-weight: bold; color: #4ade80; margin-bottom: 15px;">💰 Save €509! (48% off)</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.7);">That's just €110 per device!</div>
+                </div>
+            </div>
+            
+            <div class="comparison-table">
+                <div class="vs-row" style="border-top: 2px solid #60a5fa; margin-top: 20px; padding-top: 20px;">
+                    <div class="vs-pauhu">Complete Package Strategy</div>
+                    <div class="vs-pauhu">Better value + all-in-one convenience</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2 class="comparison-title">Why Pauhu is Different</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">💻</div>
+                    <div class="benefit-title">Local Installation</div>
+                    <div class="benefit-text">Download once, use unlimited. Works offline. Your information stays local.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-title">Your Hardware Only</div>
+                    <div class="benefit-text">Nothing sent to cloud. Your processing, your data, your control.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-title">Fixed Annual Pricing</div>
+                    <div class="benefit-text">No token charges. No usage meters. Predictable costs.</div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-title">Complete AI Toolkit</div>
+                    <div class="benefit-text">Translation, vision, speech, documents – universal AI platform.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
+        Business ID: 3477255-1 · VAT ID: FI34772551 · 
+        <a href="https://pauhu.ai/legal/privacy-policy">Privacy Policy</a> · 
+        <a href="/index.html">← Back to Home</a>
+    </div>
+
+    <script>
+        function openReservation(plan) {
+            // McDonald's-style upselling before finalizing
+            if (showUpsellOffer(plan)) {
+                return; // Upsell modal will handle the rest
+            }
+            
+            const subject = encodeURIComponent(`[${plan}] Pauhu AI Pre-Launch Reservation`);
+            const body = encodeURIComponent(`Hi,
+
+I want to reserve the ${plan} plan (€${getPlanPrice(plan)}/year for ${getPlanDevices(plan)}) during the pre-launch period.
+
+Please contact me about:
+- Early access availability  
+- Pre-launch pricing confirmation
+- Installation and setup support
+- Launch timeline
+
+Looking forward to being an early Pauhu user!
+
+Best regards`);
+            
+            const emailLink = `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
+            window.location.href = emailLink;
+        }
+        
+        function showUpsellOffer(currentPlan) {
+            const upsells = {
+                'Single': {
+                    title: 'Complete Your AI Setup!',
+                    message: 'Add a second device for work and personal for just €100 more?',
+                    savings: 'Save €40 vs buying devices separately!',
+                    newPlan: 'Dual',
+                    newPrice: '€349'
+                },
+                'Dual': {
+                    title: 'Future-Proof Your Team!',
+                    message: 'Upgrade to Team for 3 more devices, just €200 extra?',
+                    savings: 'Get 5 devices for just €110 each!',
+                    newPlan: 'Team',
+                    newPrice: '€549'
+                },
+                'Team': {
+                    title: 'Ready to Scale?',
+                    message: 'Upgrade to 10 devices with Scale for just €350 more?',
+                    savings: 'Perfect for growing teams - just €90 per device!',
+                    newPlan: 'Scale',
+                    newPrice: '€899'
+                }
+            };
+            
+            const upsell = upsells[currentPlan];
+            if (!upsell) return false;
+            
+            // Create McDonald's-style upsell modal
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); display: flex; align-items: center;
+                justify-content: center; z-index: 10000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="background: #002855; padding: 40px; border-radius: 12px; max-width: 500px; text-align: center; color: white;">
+                    <h3 style="margin-bottom: 20px; font-size: 24px;">${upsell.title}</h3>
+                    <p style="margin-bottom: 15px; font-size: 18px;">${upsell.message}</p>
+                    <div style="background: rgba(96,165,250,0.2); padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <strong style="color: #4ade80;">${upsell.savings}</strong>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button onclick="acceptUpsell('${upsell.newPlan}')" style="
+                            flex: 1; background: #60a5fa; color: white; border: none;
+                            padding: 15px; border-radius: 6px; font-size: 16px; cursor: pointer;
+                        ">Yes, Upgrade to ${upsell.newPlan}!</button>
+                        <button onclick="declineUpsell('${currentPlan}')" style="
+                            flex: 1; background: transparent; color: rgba(255,255,255,0.8);
+                            border: 1px solid rgba(255,255,255,0.3); padding: 15px;
+                            border-radius: 6px; font-size: 16px; cursor: pointer;
+                        ">No Thanks, Keep ${currentPlan}</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            return true;
+        }
+        
+        function acceptUpsell(plan) {
+            document.querySelector('div[style*="position: fixed"]').remove();
+            openReservation(plan);
+        }
+        
+        function declineUpsell(plan) {
+            document.querySelector('div[style*="position: fixed"]').remove();
+            openReservation(plan);
+        }
+
+        function getPlanPrice(plan) {
+            const prices = { 'Single': '249', 'Dual': '349', 'Team': '549', 'Scale': '899' };
+            return prices[plan];
+        }
+
+        function getPlanDevices(plan) {
+            const devices = { 'Single': '1 device', 'Dual': '2 devices', 'Team': '5 devices', 'Scale': '10 devices' };
+            return devices[plan];
+        }
+    </script>
+</body>
+</html>

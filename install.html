@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Pauhu AI - Lightning Fast • Always Consistent • Works Everywhere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/pauhu.ai_brand_mark_logo_nega.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/pauhu.ai_brand_mark_logo_nega.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/pauhu.ai_brand_mark_logo_nega.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#002855">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #002855;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .install-container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 40px;
+        }
+
+        .install-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .install-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 30px 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .install-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: #60a5fa;
+        }
+
+        .install-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .install-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .install-desc {
+            font-size: 14px;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 20px;
+        }
+
+        .install-command {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            color: #60a5fa;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .copy-button {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 4px;
+            padding: 6px 12px;
+            color: rgba(255,255,255,0.8);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-button:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .progress-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            display: none;
+        }
+
+        .progress-section.active {
+            display: block;
+        }
+
+        .progress-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            height: 8px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: #60a5fa;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .log-output {
+            background: rgba(0,0,0,0.5);
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .status-text {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="install-container" x-data="pauhuInstaller()">
+        <div class="logo">
+            <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI">
+        </div>
+        
+        <h1>Install Pauhu AI</h1>
+        <p class="subtitle">One Command Gets You Production-Ready AI</p>
+        
+        <nav style="text-align: center; margin: 20px 0;">
+            <a href="/index.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px;">← Back to Home</a>
+            <a href="/app.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px;">View Preview →</a>
+        </nav>
+
+        <div class="install-methods" x-show="!installing">
+            <!-- One-Line Install -->
+            <div class="install-card" @click="startInstall('curl')">
+                <div class="install-icon">⚡</div>
+                <div class="install-title">60-Second Setup</div>
+                <div class="install-desc">One command. Production ready immediately.</div>
+                <div class="install-command">curl -sSL https://pauhu.ai/install.sh | bash</div>
+                <button class="copy-button" @click.stop="copyCommand('curl -sSL https://pauhu.ai/install.sh | bash')">Copy</button>
+            </div>
+
+            <!-- Developer Install -->
+            <div class="install-card" @click="startInstall('pip')">
+                <div class="install-icon">🐍</div>
+                <div class="install-title">Python SDK</div>
+                <div class="install-desc">import pauhu; ai = pauhu.AI()</div>
+                <div class="install-command">pip install pauhu-ai</div>
+                <button class="copy-button" @click.stop="copyCommand('pip install pauhu-ai')">Copy</button>
+            </div>
+
+            <!-- Docker Install -->
+            <div class="install-card" @click="startInstall('docker')">
+                <div class="install-icon">🐳</div>
+                <div class="install-title">Docker Container</div>
+                <div class="install-desc">Lightning fast. Always consistent. Zero waiting.</div>
+                <div class="install-command">docker run -d pauhu/ai:latest</div>
+                <button class="copy-button" @click.stop="copyCommand('docker run -d pauhu/ai:latest')">Copy</button>
+            </div>
+
+            <!-- Web Browser -->
+            <div class="install-card" @click="openWebApp()">
+                <div class="install-icon">🌐</div>
+                <div class="install-title">Web Browser</div>
+                <div class="install-desc">Zero installation required. Try instantly.</div>
+                <div class="install-command">https://app.pauhu.ai</div>
+                <button class="copy-button" @click.stop="openWebApp()">Try Now</button>
+            </div>
+        </div>
+
+        <!-- Installation Progress -->
+        <div class="progress-section" :class="{ 'active': installing }">
+            <div class="status-text" x-text="installStatus"></div>
+            <div class="progress-bar">
+                <div class="progress-fill" :style="'width: ' + installProgress + '%'"></div>
+            </div>
+            <div class="log-output" x-ref="logOutput">
+                <template x-for="log in installLogs" :key="log.id">
+                    <div x-text="log.message"></div>
+                </template>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script>
+        function pauhuInstaller() {
+            return {
+                installing: false,
+                installProgress: 0,
+                installStatus: '',
+                installLogs: [],
+                logCounter: 0,
+
+                copyCommand(command) {
+                    navigator.clipboard.writeText(command).then(() => {
+                        // Visual feedback for copy
+                        event.target.textContent = 'Copied!';
+                        setTimeout(() => {
+                            event.target.textContent = 'Copy';
+                        }, 1000);
+                    });
+                },
+
+                openWebApp() {
+                    window.open('/app.html', '_blank');
+                },
+
+                async startInstall(method) {
+                    this.installing = true;
+                    this.installProgress = 0;
+                    this.installLogs = [];
+                    
+                    const steps = {
+                        curl: [
+                            'Getting Pauhu ready...',
+                            'Setting up your AI...',
+                            'Almost there...',
+                            'Starting Pauhu...',
+                            'Ready! Your AI is working'
+                        ],
+                        pip: [
+                            'Getting Pauhu ready...',
+                            'Setting up your coding AI...',
+                            'Almost there...',
+                            'Starting Pauhu...',
+                            'Ready! Your coding AI is working'
+                        ],
+                        docker: [
+                            'Getting Pauhu ready...',
+                            'Setting up your containerized AI...',
+                            'Almost there...',
+                            'Starting Pauhu...',
+                            'Ready! Your AI is working at localhost:8000'
+                        ]
+                    };
+
+                    const installSteps = steps[method];
+                    
+                    for (let i = 0; i < installSteps.length; i++) {
+                        this.installStatus = installSteps[i];
+                        this.addLog(`[${new Date().toLocaleTimeString()}] ${installSteps[i]}`);
+                        
+                        this.installProgress = ((i + 1) / installSteps.length) * 100;
+                        
+                        // Simulate installation time
+                        await this.sleep(i === 0 ? 2000 : 1500);
+                    }
+
+                    this.addLog('');
+                    this.addLog('✓ Pauhu AI connector is ready!');
+                    this.addLog('→ Web interface: http://localhost:8000');
+                    this.addLog('→ Terminal: pauhu "hello world"');
+                    this.addLog('→ 50-window API: Connected to Cloudflare');
+                    this.addLog('→ Models: Download automatically when needed');
+                    this.addLog('→ Usage: Unlimited with fixed yearly pricing');
+                },
+
+                addLog(message) {
+                    this.installLogs.push({
+                        id: this.logCounter++,
+                        message: message
+                    });
+                    
+                    // Auto-scroll to bottom
+                    this.$nextTick(() => {
+                        const logOutput = this.$refs.logOutput;
+                        if (logOutput) {
+                            logOutput.scrollTop = logOutput.scrollHeight;
+                        }
+                    });
+                },
+
+                sleep(ms) {
+                    return new Promise(resolve => setTimeout(resolve, ms));
+                }
+            }
+        }
+    </script>
+</body>
+</html>

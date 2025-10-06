@@ -1,0 +1,143 @@
+{
+  "name": "Pauhu AI - Universal AI Infrastructure Platform",
+  "short_name": "Pauhu AI",
+  "description": "50 AI windows in one platform. Lightning fast, always consistent, works everywhere.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#002855",
+  "theme_color": "#002855",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities", "developer"],
+  "screenshots": [
+    {
+      "src": "/assets/screenshot-mobile.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "platform": "narrow",
+      "label": "Mobile interface showing 50 AI windows"
+    },
+    {
+      "src": "/assets/screenshot-desktop.png", 
+      "sizes": "1280x720",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Desktop interface with installation options"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/assets/pauhu.ai_brand_mark_logo_nega.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pauhu.ai_brand_mark_logo_nega.png",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/assets/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-96.png",
+      "sizes": "96x96", 
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/favicon-16.png",
+      "sizes": "16x16",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Install Pauhu AI",
+      "short_name": "Install",
+      "description": "Download and install Pauhu AI connector",
+      "url": "/install.html",
+      "icons": [
+        {
+          "src": "/assets/install-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Try Demo",
+      "short_name": "Demo",
+      "description": "Test Pauhu AI in your browser",
+      "url": "/app.html",
+      "icons": [
+        {
+          "src": "/assets/demo-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "View Pricing",
+      "short_name": "Pricing",
+      "description": "See Pauhu AI pricing options",
+      "url": "/pricing.html",
+      "icons": [
+        {
+          "src": "/assets/pricing-icon.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "webapp",
+      "url": "https://app.pauhu.ai/"
+    }
+  ],
+  "prefer_related_applications": false,
+  "edge_side_panel": {
+    "preferred_width": 400
+  },
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
+  "protocol_handlers": [
+    {
+      "protocol": "pauhu",
+      "url": "/app.html?command=%s"
+    }
+  ]
+}
