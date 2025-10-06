@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pauhu AI - Lightning Fast • Always Consistent • Works Everywhere</title>
+    <title>Pauhu AI - For Developers Who Ship Fast</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/pauhu.ai_brand_mark_logo_nega.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/pauhu.ai_brand_mark_logo_nega.png">
@@ -263,12 +263,33 @@
                 padding: 8px;
                 font-size: 11px;
             }
+            
+            /* Mobile Navigation Fix */
+            nav {
+                margin: 30px 0 !important;
+            }
+            nav a {
+                display: inline-block !important;
+                margin: 5px 8px !important;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                text-align: center;
+                white-space: nowrap;
+            }
         }
 
         @media (max-width: 480px) {
             .container { padding: 0 10px; }
             .logo img { width: 70%; }
             .form-container { padding: 20px 15px; }
+            
+            /* Stack navigation vertically on very small screens */
+            nav a {
+                display: block !important;
+                margin: 8px auto !important;
+                max-width: 180px;
+                text-align: center;
+            }
         }
 
         /* High contrast mode support */
@@ -313,15 +334,28 @@
     </div>
 
     <div class="container" x-data="preorderForm()" :class="'text-' + (window.textSize || 'normal')">
-        <p class="privacy-note-top">Reserve Your Spot</p>
-        
         <div class="logo">
             <img src="/assets/pauhu.ai_brand_mark_logo_nega.png" alt="Pauhu AI">
         </div>
         
-        <h1 class="title">AI for Developers Who Ship Code</h1>
+        <h1 class="title">For Developers Who Ship Fast</h1>
         <p class="subtitle">Sub-100ms Guaranteed • 90% Cost Savings • 60-Second Setup</p>
         
+        <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
+            <p style="margin-bottom: 20px;"><strong>Actually Fast</strong><br>
+            Sub-100ms average response time. 99.9% uptime. Zero rate limits or timeouts.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Fixed Pricing</strong><br>
+            €249-€899/year flat rate. Zero per-token costs. Zero surprise bills ever.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Zero Config</strong><br>
+            Runs locally after install. Zero API keys needed. Zero ongoing cloud dependencies.</p>
+            
+            <p style="margin-bottom: 20px;"><strong>Over 1 Million Lines Translated</strong><br>
+            Used by teams at startups and Fortune 500s. 4.8/5 developer satisfaction.</p>
+        </div>
+
+        <p class="privacy-note-top">Reserve Your Spot</p>
         <div class="ticket-id" x-text="'Message ID: ' + orderId"></div>
 
         <form @submit.prevent="submitPreorder">
@@ -370,34 +404,17 @@
             </button>
         </form>
         
-        <div style="text-align: center; margin: 40px 0; line-height: 1.6;">
-            <div style="background: rgba(0,0,0,0.3); border-radius: 8px; padding: 20px; margin: 20px 0; font-family: 'Courier New', monospace; text-align: left; font-size: 14px;">
-curl -sSL https://pauhu.ai/install.sh | bash
-pauhu "translate this to German: Hello world"
-# → "Hallo Welt" (47ms response time)
-            </div>
-            
-            <p style="margin-bottom: 20px;"><strong>Actually Fast</strong><br>
-            Sub-100ms average response time. 99.9% uptime. Zero rate limits or timeouts.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>Fixed Pricing</strong><br>
-            €249-€899/year flat rate. Zero per-token costs. Zero surprise bills ever.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>Zero Config</strong><br>
-            Runs locally after install. Zero API keys needed. Zero ongoing cloud dependencies.</p>
-            
-            <p style="margin-bottom: 20px;"><strong>Over 1 Million Lines Translated</strong><br>
-            Used by teams at startups and Fortune 500s. 4.8/5 developer satisfaction.</p>
-            
-        </div>
-        
         <nav style="text-align: center; margin: 30px 0; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px;">
-            <a href="/install.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;">Install Now</a>
+            <a href="https://get.pauhu.ai" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;">Get Pauhu</a>
             <a href="/app.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;">View Preview</a>
             <a href="/pricing.html" style="color: rgba(255,255,255,0.8); text-decoration: none; margin: 0 15px; font-size: 14px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.3); border-radius: 4px;">View Pricing</a>
         </nav>
         
         <div class="footer">
+            <div style="margin-bottom: 15px; padding: 10px; background: rgba(255,255,255,0.05); border-radius: 4px;">
+                <strong>Email not working?</strong> Send your reservation directly to: 
+                <a href="mailto:team@pauhu.ai" style="color: #60a5fa;">team@pauhu.ai</a>
+            </div>
             Pauhu AI Ltd · P.O. Box 292 · 00101 Helsinki, FINLAND<br>
             Business ID: 3477255-1 · VAT ID: FI34772551 · 
             <a href="https://pauhu.ai/legal/privacy-policy">Privacy Policy</a>
@@ -438,9 +455,10 @@ pauhu "translate this to German: Hello world"
                         return;
                     }
                     
-                    const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Early Access Reservation`);
-                    const body = encodeURIComponent(`PAUHU AI EARLY ACCESS RESERVATION
-                    
+                    try {
+                        const subject = encodeURIComponent(`[${this.orderId}] Pauhu AI Early Access Reservation`);
+                        const body = encodeURIComponent(`PAUHU AI EARLY ACCESS RESERVATION
+
 MESSAGE ID: ${this.orderId}
 DATE: ${new Date().toLocaleString()}
 TYPE: Early Access Reservation
@@ -460,13 +478,23 @@ TIMESTAMP: ${new Date().toISOString()}
 ---
 This early access reservation was submitted via the Pauhu AI Early Access Program.
 Please contact me when the platform is available for early access.`);
-                    
-                    const emailLink = `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
-                    
-                    console.log('📧 Opening preorder email');
-                    window.location.href = emailLink;
-                    
-                    setTimeout(() => this.resetForm(), 1000);
+                        
+                        const emailLink = `mailto:team@pauhu.ai?subject=${subject}&body=${body}`;
+                        
+                        console.log('📧 Opening email client...');
+                        console.log('Email link:', emailLink);
+                        
+                        // Try to open email client
+                        window.location.href = emailLink;
+                        
+                        // Show success message
+                        alert('Opening your email client...\n\nIf it doesn\'t open automatically, please email team@pauhu.ai with your reservation details.');
+                        
+                        setTimeout(() => this.resetForm(), 2000);
+                    } catch (error) {
+                        console.error('Email error:', error);
+                        alert('Having trouble opening email client. Please email team@pauhu.ai directly with your details.');
+                    }
                 },
                 
                 resetForm() {

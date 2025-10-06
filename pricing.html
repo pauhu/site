@@ -71,7 +71,7 @@
 
         .pricing-card.popular {
             border-color: #60a5fa;
-            background: rgba(96,165,250,0.1);
+            background: rgba(255,255,255,0.05);
         }
 
         .popular-badge {
@@ -270,6 +270,29 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            
+            /* Mobile Navigation Fix */
+            nav {
+                margin-bottom: 30px !important;
+            }
+            nav a {
+                display: inline-block !important;
+                margin: 5px 8px !important;
+                padding: 8px 12px !important;
+                font-size: 13px !important;
+                text-align: center;
+                white-space: nowrap;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            /* Stack navigation vertically on very small screens */
+            nav a {
+                display: block !important;
+                margin: 8px auto !important;
+                max-width: 180px;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -289,8 +312,8 @@
         <h1 class="title">Fixed Annual AI Pricing</h1>
         <p class="subtitle">From €249/year • No per-token costs • No surprise bills</p>
         <p class="subtitle">One license, unlimited usage. Built for developers who demand better.</p>
-        <div style="background: rgba(96,165,250,0.2); padding: 15px; border-radius: 8px; margin: 20px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
-            <strong style="color: #60a5fa;">Pre-Launch Pricing:</strong> 
+        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 20px 0; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <strong>Pre-Launch Pricing:</strong> 
             Reserve your license now. Pay when we launch.
         </div>
     </div>
@@ -387,19 +410,18 @@
                     </div>
                 </div>
                 
-                <div style="background: rgba(96,165,250,0.1); padding: 25px; border-radius: 8px; border: 2px solid #60a5fa;">
-                    <div style="background: #60a5fa; color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 15px; display: inline-block;">COMPLETE PACKAGE</div>
-                    <h3 style="color: #60a5fa; margin-bottom: 20px;">Pauhu Team License</h3>
+                <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 8px; border: 2px solid rgba(255,255,255,0.3);">
+                    <div style="background: rgba(255,255,255,0.2); color: white; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 600; margin-bottom: 15px; display: inline-block;">COMPLETE PACKAGE</div>
+                    <h3 style="margin-bottom: 20px;">Pauhu Team License</h3>
                     <div style="margin-bottom: 15px;">
-                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Universal AI platform</div>
-                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ 5 device licenses</div>
-                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Translation, Vision, Speech, Documents</div>
-                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Works offline</div>
-                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">✅ Unlimited usage</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">• Universal AI platform</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">• 5 device licenses</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">• Translation, Vision, Speech, Documents</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">• Works offline</div>
+                        <div style="font-size: 14px; color: rgba(255,255,255,0.8);">• Unlimited usage</div>
                     </div>
-                    <div style="font-size: 32px; font-weight: bold; color: #60a5fa; margin: 15px 0;">€549/year</div>
-                    <div style="font-size: 18px; font-weight: bold; color: #4ade80; margin-bottom: 15px;">💰 Save €509! (48% off)</div>
-                    <div style="font-size: 14px; color: rgba(255,255,255,0.7);">That's just €110 per device!</div>
+                    <div style="font-size: 32px; font-weight: bold; margin: 15px 0;">€549/year</div>
+                    <div style="font-size: 14px; color: rgba(255,255,255,0.7);">Complete platform for your team</div>
                 </div>
             </div>
             
@@ -415,22 +437,22 @@
             <h2 class="comparison-title">Why Pauhu is Different</h2>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-icon">💻</div>
+                    <div class="benefit-icon">•</div>
                     <div class="benefit-title">Local Installation</div>
                     <div class="benefit-text">Download once, use unlimited. Works offline. Your information stays local.</div>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🔒</div>
+                    <div class="benefit-icon">•</div>
                     <div class="benefit-title">Your Hardware Only</div>
                     <div class="benefit-text">Nothing sent to cloud. Your processing, your data, your control.</div>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-icon">•</div>
                     <div class="benefit-title">Fixed Annual Pricing</div>
                     <div class="benefit-text">No token charges. No usage meters. Predictable costs.</div>
                 </div>
                 <div class="benefit-card">
-                    <div class="benefit-icon">🚀</div>
+                    <div class="benefit-icon">•</div>
                     <div class="benefit-title">Complete AI Toolkit</div>
                     <div class="benefit-text">Translation, vision, speech, documents – universal AI platform.</div>
                 </div>
@@ -511,8 +533,8 @@ Best regards`);
                 <div style="background: #002855; padding: 40px; border-radius: 12px; max-width: 500px; text-align: center; color: white;">
                     <h3 style="margin-bottom: 20px; font-size: 24px;">${upsell.title}</h3>
                     <p style="margin-bottom: 15px; font-size: 18px;">${upsell.message}</p>
-                    <div style="background: rgba(96,165,250,0.2); padding: 15px; border-radius: 8px; margin: 20px 0;">
-                        <strong style="color: #4ade80;">${upsell.savings}</strong>
+                    <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <strong>${upsell.savings}</strong>
                     </div>
                     <div style="display: flex; gap: 15px; margin-top: 30px;">
                         <button onclick="acceptUpsell('${upsell.newPlan}')" style="
